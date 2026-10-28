@@ -29,6 +29,9 @@ contract ZillaEscrow is ReentrancyGuard {
     uint64 public constant REVIEW_PERIOD = 14 days;
     /// @notice A funded but undelivered milestone becomes refundable this long after its due date.
     uint64 public constant REFUND_GRACE = 7 days;
+    /// @notice If the arbiter has not ruled this long after a dispute opens, either party may
+    ///         settle it with the default split (see `resolveDisputeAfterTimeout`).
+    uint64 public constant ARBITER_TIMEOUT = 30 days;
 
     // ------------------------------------------------------------------ types
 
@@ -131,6 +134,11 @@ contract ZillaEscrow is ReentrancyGuard {
     mapping(uint256 => mapping(uint256 => ChangeOrder)) private _changeOrders;
     /// @notice Total tokens currently held in escrow per token, across all agreements.
     mapping(IERC20 => uint256) public escrowed;
+    /// @notice When each milestone's current dispute was opened (0 if never disputed).
+    mapping(uint256 => mapping(uint256 => uint64)) public disputedAt;
+    /// @notice Agent the provider proposed after acceptance, waiting for client consent.
+    mapping(uint256 => address) public pendingAgent;
+    mapping(uint256 => uint256) public pendingAgentIdentity;
 
     // ------------------------------------------------------------------ events
 
@@ -154,6 +162,9 @@ contract ZillaEscrow is ReentrancyGuard {
     event AgreementAccepted(uint256 indexed agreementId, address indexed by, bytes32 baselineHash);
     event AgreementCancelled(uint256 indexed agreementId, address indexed by);
     event AgentSet(uint256 indexed agreementId, address indexed agent, uint256 agentIdentityId);
+    event AgentProposed(
+        uint256 indexed agreementId, address indexed agent, uint256 agentIdentityId
+    );
     event MilestoneFunded(
         uint256 indexed agreementId,
         uint256 indexed index,
@@ -315,15 +326,40 @@ contract ZillaEscrow is ReentrancyGuard {
         emit AgreementCancelled(agreementId, msg.sender);
     }
 
-    /// @notice Provider assigns (or clears) the delivery agent allowed to post proofs.
+    /// @notice Provider assigns (or clears) the delivery agent allowed to post proofs. Before
+    ///         acceptance, or when clearing the agent, it takes effect at once. After acceptance a
+    ///         new agent is only proposed: the client must consent with `approveAgent`, because an
+    ///         agent's proof starts the provider's claim clock.
     /// @param agentIdentityId Optional ERC-8004 identity registry id for the agent, 0 if none.
     function setAgent(uint256 agreementId, address agent, uint256 agentIdentityId) external {
         Agreement storage a = _agreement(agreementId);
         if (msg.sender != a.provider) revert NotAuthorized();
         if (a.status == AgreementStatus.Cancelled) revert WrongAgreementStatus();
         if (agent == a.client || agent == a.arbiter) revert InvalidRoles();
+        delete pendingAgent[agreementId];
+        delete pendingAgentIdentity[agreementId];
+        if (a.status == AgreementStatus.Proposed || agent == address(0)) {
+            a.agent = agent;
+            emit AgentSet(agreementId, agent, agentIdentityId);
+        } else {
+            pendingAgent[agreementId] = agent;
+            pendingAgentIdentity[agreementId] = agentIdentityId;
+            emit AgentProposed(agreementId, agent, agentIdentityId);
+        }
+    }
+
+    /// @notice Client consents to the agent the provider proposed after acceptance. `agent` must
+    ///         match the pending proposal, so a swapped proposal cannot be approved by accident.
+    function approveAgent(uint256 agreementId, address agent) external {
+        Agreement storage a = _activeAgreement(agreementId);
+        if (msg.sender != a.client) revert NotAuthorized();
+        address pending = pendingAgent[agreementId];
+        if (pending == address(0) || pending != agent) revert InvalidAddress();
+        uint256 identityId = pendingAgentIdentity[agreementId];
+        delete pendingAgent[agreementId];
+        delete pendingAgentIdentity[agreementId];
         a.agent = agent;
-        emit AgentSet(agreementId, agent, agentIdentityId);
+        emit AgentSet(agreementId, agent, identityId);
     }
 
     // ------------------------------------------------------------------ milestone lifecycle
@@ -404,7 +440,9 @@ contract ZillaEscrow is ReentrancyGuard {
     }
 
     /// @notice Client reclaims a milestone that was never delivered, once it is REFUND_GRACE
-    ///         past its due date.
+    ///         past its due date. Once any proof has been posted (including a milestone reopened
+    ///         by a cost-raising change order), expiry no longer applies: settle by release,
+    ///         dispute or a voluntary provider refund instead.
     function refundExpired(uint256 agreementId, uint256 index) external nonReentrant {
         Agreement storage a = _activeAgreement(agreementId);
         if (msg.sender != a.client) revert NotAuthorized();
@@ -412,6 +450,7 @@ contract ZillaEscrow is ReentrancyGuard {
         if (m.status != MilestoneStatus.Pending && m.status != MilestoneStatus.Funded) {
             revert WrongMilestoneStatus();
         }
+        if (m.proofHash != bytes32(0)) revert WrongMilestoneStatus();
         if (block.timestamp <= uint256(m.dueDate) + REFUND_GRACE) revert TooEarly();
         _refund(a, m, agreementId, index);
     }
@@ -440,6 +479,7 @@ contract ZillaEscrow is ReentrancyGuard {
             revert WrongMilestoneStatus();
         }
         m.status = MilestoneStatus.Disputed;
+        disputedAt[agreementId][index] = uint64(block.timestamp);
         emit DisputeOpened(agreementId, index, msg.sender);
     }
 
@@ -453,17 +493,24 @@ contract ZillaEscrow is ReentrancyGuard {
         if (msg.sender != a.arbiter) revert NotAuthorized();
         Milestone storage m = _milestone(a, agreementId, index);
         if (m.status != MilestoneStatus.Disputed) revert WrongMilestoneStatus();
-        uint128 held = m.funded;
-        if (toProvider > held) revert AmountExceedsEscrow();
-        uint128 toClient = held - toProvider;
+        if (toProvider > m.funded) revert AmountExceedsEscrow();
+        _settleDispute(a, m, agreementId, index, toProvider, msg.sender);
+    }
 
-        m.status = MilestoneStatus.Resolved;
-        m.funded = 0;
-        escrowed[a.token] -= held;
-
-        if (toProvider != 0) a.token.safeTransfer(a.provider, toProvider);
-        if (toClient != 0) a.token.safeTransfer(a.client, toClient);
-        emit DisputeResolved(agreementId, index, msg.sender, toProvider, toClient);
+    /// @notice Exit for a dispute the arbiter never rules on. After ARBITER_TIMEOUT either party
+    ///         may settle with the default split: if proof was posted, the held funds are split
+    ///         evenly (odd unit to the client); if no proof was ever posted, all of it returns to
+    ///         the client. Emits `DisputeResolved` with `arbiter == address(0)`.
+    function resolveDisputeAfterTimeout(uint256 agreementId, uint256 index) external nonReentrant {
+        Agreement storage a = _activeAgreement(agreementId);
+        if (msg.sender != a.client && msg.sender != a.provider) revert NotAuthorized();
+        Milestone storage m = _milestone(a, agreementId, index);
+        if (m.status != MilestoneStatus.Disputed) revert WrongMilestoneStatus();
+        if (block.timestamp < uint256(disputedAt[agreementId][index]) + ARBITER_TIMEOUT) {
+            revert TooEarly();
+        }
+        uint128 toProvider = m.proofHash != bytes32(0) ? m.funded / 2 : 0;
+        _settleDispute(a, m, agreementId, index, toProvider, address(0));
     }
 
     // ------------------------------------------------------------------ change orders
@@ -600,14 +647,33 @@ contract ZillaEscrow is ReentrancyGuard {
 
     function _payProvider(Agreement storage a, uint256 agreementId, uint256 index) private {
         Milestone storage m = _milestone(a, agreementId, index);
+        // Submitted implies fully funded: proof needs full funding, and a cost increase on a
+        // Submitted milestone moves it back to Funded.
         if (m.status != MilestoneStatus.Submitted) revert WrongMilestoneStatus();
-        if (m.funded != m.amount) revert NotFullyFunded();
         uint128 amount = m.funded;
         m.status = MilestoneStatus.Released;
         m.funded = 0;
         escrowed[a.token] -= amount;
         a.token.safeTransfer(a.provider, amount);
         emit MilestoneReleased(agreementId, index, msg.sender, amount);
+    }
+
+    function _settleDispute(
+        Agreement storage a,
+        Milestone storage m,
+        uint256 agreementId,
+        uint256 index,
+        uint128 toProvider,
+        address by
+    ) private {
+        uint128 held = m.funded;
+        uint128 toClient = held - toProvider;
+        m.status = MilestoneStatus.Resolved;
+        m.funded = 0;
+        escrowed[a.token] -= held;
+        if (toProvider != 0) a.token.safeTransfer(a.provider, toProvider);
+        if (toClient != 0) a.token.safeTransfer(a.client, toClient);
+        emit DisputeResolved(agreementId, index, by, toProvider, toClient);
     }
 
     function _refund(Agreement storage a, Milestone storage m, uint256 agreementId, uint256 index)

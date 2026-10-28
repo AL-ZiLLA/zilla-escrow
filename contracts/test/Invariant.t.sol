@@ -93,6 +93,17 @@ contract Handler is Test {
         try escrow.resolveDispute(id, i, uint128(bound(split, 0, held))) {} catch {}
     }
 
+    /// Dispute left for the arbiter to ignore, then settled by timeout once the clock allows.
+    function disputeTimeout(uint256 seed, bool openOnly) external {
+        (uint256 id, uint256 i, bool ok) = _pick(seed);
+        if (!ok) return;
+        vm.prank(provider);
+        try escrow.openDispute(id, i) {} catch {}
+        if (openOnly) return;
+        vm.prank(client);
+        try escrow.resolveDisputeAfterTimeout(id, i) {} catch {}
+    }
+
     function changeOrder(uint256 seed, uint128 delta, uint32 extend, bool append) external {
         (uint256 id, uint256 i, bool ok) = _pick(seed);
         if (!ok) return;

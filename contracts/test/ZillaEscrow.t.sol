@@ -259,10 +259,17 @@ contract ZillaEscrowLifecycleTest is Base {
         vm.expectRevert(ZillaEscrow.NotAuthorized.selector);
         escrow.setAgent(id, agent2, 0);
 
+        // After acceptance a new agent is only proposed until the client consents.
         vm.expectEmit(true, true, false, true);
-        emit ZillaEscrow.AgentSet(id, agent2, 42);
+        emit ZillaEscrow.AgentProposed(id, agent2, 42);
         vm.prank(provider);
         escrow.setAgent(id, agent2, 42);
+        assertEq(escrow.getAgreement(id).agent, agent);
+        vm.expectEmit(true, true, false, true);
+        emit ZillaEscrow.AgentSet(id, agent2, 42);
+        vm.prank(client);
+        escrow.approveAgent(id, agent2);
+        assertEq(escrow.getAgreement(id).agent, agent2);
 
         _fund(id, 0);
         vm.prank(agent);
