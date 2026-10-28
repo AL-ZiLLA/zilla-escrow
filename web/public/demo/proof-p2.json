@@ -1,0 +1,34 @@
+{
+  "schema": "zilla-escrow/proof@1",
+  "phase": "P2",
+  "postedBy": "Northwind delivery agent",
+  "artifacts": [
+    {
+      "name": "design-system.fig",
+      "kind": "design"
+    },
+    {
+      "name": "menu-pages-preview.url",
+      "kind": "link"
+    },
+    {
+      "name": "test-order-recording.mp4",
+      "kind": "video"
+    },
+    {
+      "name": "gift-card-checkout-test.mp4",
+      "kind": "video"
+    }
+  ],
+  "checks": [
+    {
+      "criterion": "Designs approved in review",
+      "result": "met"
+    },
+    {
+      "criterion": "Test order completes end to end",
+      "result": "met"
+    }
+  ],
+  "note": "Includes the gift card checkout added by CR-1."
+}

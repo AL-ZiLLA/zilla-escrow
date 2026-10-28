@@ -1,0 +1,64 @@
+{
+  "schema": "zilla-escrow/scope@1",
+  "project": "Website rebuild with online ordering",
+  "client": "Harbor Lane Bakery (fictional)",
+  "provider": "Northwind Studio (fictional)",
+  "currency": "mUSDC, a mock test token with no value",
+  "terms": {
+    "reviewPeriodDays": 14,
+    "refundGraceDays": 7,
+    "changePolicy": "Changes are proposed by either party and take effect only when the other party approves on chain."
+  },
+  "version": 1,
+  "phases": [
+    {
+      "ref": "P1",
+      "name": "Discovery and site map",
+      "summary": "Interview the owners, audit the current site and agree on what the new one must do.",
+      "deliverables": [
+        "Stakeholder interview notes",
+        "Content inventory",
+        "Site map and page list"
+      ],
+      "acceptance": [
+        "Client signs off the site map",
+        "Every current page is mapped or retired"
+      ],
+      "amount": 2400,
+      "durationDays": 14
+    },
+    {
+      "ref": "P2",
+      "name": "Design and online ordering",
+      "summary": "Visual design, menu pages and a pickup ordering flow.",
+      "deliverables": [
+        "Design system",
+        "Menu and location pages",
+        "Pickup ordering flow"
+      ],
+      "acceptance": [
+        "Designs approved in review",
+        "Test order completes end to end"
+      ],
+      "amount": 4800,
+      "durationDays": 21
+    },
+    {
+      "ref": "P3",
+      "name": "Build, launch and handover",
+      "summary": "Production build, launch checklist and a handover session.",
+      "deliverables": [
+        "Production site",
+        "Launch checklist",
+        "Recorded handover session"
+      ],
+      "acceptance": [
+        "Launch checklist complete",
+        "Owner can edit the menu without help"
+      ],
+      "amount": 3600,
+      "durationDays": 21
+    }
+  ],
+  "changeRequests": []
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "zilla-escrow/proof@1",
+  "phase": "P1",
+  "postedBy": "Northwind delivery agent",
+  "artifacts": [
+    {
+      "name": "interview-notes.md",
+      "kind": "notes"
+    },
+    {
+      "name": "content-inventory.csv",
+      "kind": "sheet"
+    },
+    {
+      "name": "site-map-v1.pdf",
+      "kind": "document"
+    }
+  ],
+  "checks": [
+    {
+      "criterion": "Client signs off the site map",
+      "result": "met"
+    },
+    {
+      "criterion": "Every current page is mapped or retired",
+      "result": "met"
+    }
+  ],
+  "note": "Site map approved in the review call. Files attached to the proof pack."
+}

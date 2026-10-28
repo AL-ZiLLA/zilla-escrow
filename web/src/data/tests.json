@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-10-28T02:13:00.063Z",
+  "passed": 47,
+  "failed": 0,
+  "summary": [
+    [
+      "Tests passing",
+      "47 / 47"
+    ],
+    [
+      "Fuzz and invariant calls",
+      "13,312"
+    ],
+    [
+      "Line coverage",
+      "100.00%"
+    ],
+    [
+      "Branch coverage",
+      "88.57%"
+    ]
+  ],
+  "suites": [
+    "ZillaEscrowFuzzTest: 5 of 5 passing",
+    "ZillaEscrowInvariantTest: 1 of 1 passing",
+    "ReentrancyTest: 3 of 3 passing",
+    "ZillaEscrowChangeOrderTest: 9 of 9 passing",
+    "ZillaEscrowLifecycleTest: 27 of 27 passing",
+    "ZillaEscrowTokenSafetyTest: 2 of 2 passing"
+  ]
+}
