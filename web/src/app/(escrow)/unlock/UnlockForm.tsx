@@ -3,13 +3,16 @@ import { useSearchParams } from 'next/navigation';
 
 const MESSAGES: Record<string, string> = {
   wrong: 'That password did not match. Try again.',
-  limit: 'Too many attempts. Wait 10 minutes, then try again.',
   config: 'The demo gate is not configured on this deployment yet.',
 };
 
 export function UnlockForm() {
   const params = useSearchParams();
-  const error = MESSAGES[params.get('error') ?? ''];
+  const code = params.get('error') ?? '';
+  const wait = Math.min(Math.max(Number.parseInt(params.get('wait') ?? '', 10) || 15, 1), 240);
+  const error = code === 'limit'
+    ? `Too many attempts. Unlocking is paused for about ${wait} minute${wait === 1 ? '' : 's'}, then you can try again.`
+    : MESSAGES[code];
   const next = params.get('next') ?? '/';
   return <form className="esc-form esc-panel esc-unlock-panel" method="post" action="/api/unlock">
     <input type="hidden" name="next" value={next}/>
