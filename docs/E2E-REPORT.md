@@ -14,7 +14,8 @@ Branch `ui-v2-integration`, PR #1 (not merged). Testnet only: Arbitrum Sepolia (
 | Coverage of `src/ZillaEscrow.sol` and `src/mocks/MockStablecoin.sol` | 100% lines, statements, branches, functions |
 | Deployed bytecode vs local `forge build` (`cast code`) | byte-identical for escrow and token |
 | `pnpm typecheck`, `pnpm lint`, `pnpm test` | green |
-| Vercel preview for head commit | READY: https://zilla-escrow-gttpjok42-al-zillas-projects.vercel.app (Vercel Authentication on) |
+| Demo password gate + PWA (`web/e2e/gate-pwa.mjs`) on the deployed branch alias | **27/27** (`docs/screenshots/pwa/gate-pwa-results.json`) |
+| Vercel preview | branch alias https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app (demo password gate; Vercel Authentication off for this project) |
 
 ## Deployment (current)
 
@@ -44,8 +45,8 @@ Branch `ui-v2-integration`, PR #1 (not merged). Testnet only: Arbitrum Sepolia (
 | M1 implied affiliation | Fixed. Eyebrow reads "Zilla OS · Built on Arbitrum · Testnet demo"; no cohort or program copy (e2e asserts it). |
 | M2 placeholder explorer links 404 | Fixed. Sample values show a chip and no link; e2e checks every Arbiscan href on 16 routes. |
 | M3 "deployment not supplied" | Fixed. Landing links the escrow address and `/recorded`. |
-| M4 Arbiscan verification | **Needs Al**: an Arbiscan API key. Commands below. |
-| M5 public demo URL | **Needs Al**: preview is behind Vercel Authentication. Options: merge + prod, turn off protection for previews, or a Vercel shareable link. |
+| M4 Arbiscan verification | **Done** (2026-10-28 10:34 AM MT). Source verified: [escrow](https://sepolia.arbiscan.io/address/0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2#code), [mock stablecoin](https://sepolia.arbiscan.io/address/0x34b161d6315c9874cec85d54c0ad7e8baa208eec#code). |
+| M5 public demo URL | **Done**. Vercel Authentication is off for this project; the app sits behind a demo password (`/unlock`). The password is shared with reviewers by Al. |
 | S1 dispute exit | Fixed in contract + tests. |
 | S2 expiry claw-back | Fixed in contract + tests. |
 | S3 agent consent | Fixed in contract + tests. Note: agent may still equal provider, and while an agreement is Proposed the provider can propose a new agent before the client accepts (the client still has to approve it). |
@@ -63,14 +64,22 @@ Branch `ui-v2-integration`, PR #1 (not merged). Testnet only: Arbitrum Sepolia (
 | N4 390px nav fade | Deferred. |
 | N5 ERC-8004 / USDG | Mentioned in the submit packet only. |
 
-## Arbiscan verification (run after creating a key; not run)
+## Arbiscan verification (done for the deployment above)
 
 ```
-export ARBISCAN_API_KEY=...   # Al creates this; not stored in the repo
+export ETHERSCAN_API_KEY=...   # kept outside the repo
 cd contracts
 forge verify-contract 0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2 src/ZillaEscrow.sol:ZillaEscrow --chain 421614 --compiler-version 0.8.24 --num-of-optimizations 200 --evm-version cancun --watch
 forge verify-contract 0x34b161d6315c9874cec85d54c0ad7e8baa208eec src/mocks/MockStablecoin.sol:MockStablecoin --chain 421614 --compiler-version 0.8.24 --num-of-optimizations 200 --evm-version cancun --watch
 ```
+
+## Installable app (PWA) and demo password gate
+
+- Web app manifest (`/manifest.webmanifest`): standalone, start URL `/`, icons 192/512 plus maskable, apple-touch icon, iOS meta, theme color per scheme.
+- Service worker (`/sw.js`) caches the app shell and same-origin static assets only. It never caches RPC, Arbiscan, `/api` or RSC requests, so onchain reads are always live.
+- Every route except `/unlock`, the manifest, the service worker and icons redirects to `/unlock` until the demo password is entered. The cookie is an HMAC token (httpOnly, secure, SameSite=Lax, 30 days) bound to the current password; failures are rate limited.
+- Verified on the deployed alias: unauthenticated `/`, `/fund`, `/recorded`, `/activity` redirect to `/unlock`; a wrong password is rejected with no cookie; the right password lands on `/fund`; Chrome reports the app installable at 390px with no manifest errors; offline relaunch shows the cached shell.
+- Install: iPhone, open the link in Safari, Share, Add to Home Screen. Android or desktop Chrome, use the install icon in the address bar or menu, Install app.
 
 ## Screenshots (`docs/screenshots/e2e/`)
 
