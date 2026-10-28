@@ -269,7 +269,7 @@
     },
     "contract": {
       "address": "0x0000000000000000000000000000000000000000",
-      "note": "Placeholder. Not deployed yet at handoff time."
+      "note": "Fictional fixture address. The real testnet deployment is recorded in src/data/run.json."
     },
     "token": {
       "symbol": "mUSDC",
