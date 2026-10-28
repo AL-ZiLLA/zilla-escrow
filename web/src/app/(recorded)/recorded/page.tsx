@@ -6,7 +6,7 @@ import { Walkthrough } from "@/components/recorded/Walkthrough";
 import tests from "@/data/tests.json";
 import { ROLE_LABEL, run, type RoleKey } from "@/lib/run";
 import { REPO_URL } from "@/lib/site";
-import { priorDeployment } from "@/lib/escrow/deployment";
+import { priorDeployments } from "@/lib/escrow/deployment";
 
 const isLocal = run.network.chainId === 31337;
 
@@ -27,9 +27,10 @@ const GUARDS: [string, string][] = [
   ["Silent client", "The provider can claim 14 days after posting proof if the client never responds."],
   ["Missed deadline", "The client can take back a funded phase 7 days after its due date if no proof was posted."],
   ["Disputes", "Either party can freeze a phase. A named arbiter splits it, and the remainder goes to the client."],
-  ["Silent arbiter", "If the arbiter has not ruled 30 days after a dispute opens, either party can settle: an even split if proof was posted, otherwise a full refund to the client."],
+  ["Silent arbiter", "If the arbiter has not ruled 30 days after a dispute opens, either party can settle: an even split if proof was posted, otherwise a full refund to the client once the phase is also 7 days past its due date."],
+  ["Disputes cannot block delivery", "The provider or agent can still post proof while a phase is disputed. The dispute stays open for the arbiter."],
   ["Delivered work stays protected", "Once proof is posted, the missed-deadline refund no longer applies, even if a later change order raises the price."],
-  ["Agent changes need consent", "After acceptance the provider can only propose a new delivery agent. The client must approve it."],
+  ["Agent changes need consent", "The client names the delivery agent it saw when it accepts, so a last-minute swap fails. After acceptance the provider can only propose a new agent, and the client must approve it."],
 ];
 
 export default function Home() {
@@ -179,15 +180,18 @@ export default function Home() {
                 {(["client", "provider", "agent", "arbiter"] as RoleKey[]).map((r) => (
                   <Row key={r} k={ROLE_LABEL[r]} v={<AddressLink address={run.roles[r]} />} />
                 ))}
-                <Row
-                  k="Prior version"
-                  v={
-                    <span>
-                      <AddressLink address={priorDeployment.escrow} />{" "}
-                      <span className="text-muted">first deployment, before the 2026-10-28 review fixes. Superseded.</span>
-                    </span>
-                  }
-                />
+                {priorDeployments.map((p) => (
+                  <Row
+                    key={p.label}
+                    k={`Prior version (${p.label})`}
+                    v={
+                      <span>
+                        <AddressLink address={p.escrow} />{" "}
+                        <span className="text-muted">{p.note}</span>
+                      </span>
+                    }
+                  />
+                ))}
               </dl>
               <div className="mt-5 border-t border-line pt-5">
                 <LiveCheck />

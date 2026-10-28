@@ -9,7 +9,7 @@
     {
       "check": "escrow has code",
       "ok": true,
-      "detail": "15620 bytes"
+      "detail": "15851 bytes"
     },
     {
       "check": "token has code",
@@ -21,37 +21,37 @@
       "ok": true
     },
     {
-      "check": "deploy-MockStablecoin: block 323719428",
+      "check": "deploy-MockStablecoin: block 323738269",
       "ok": true,
-      "detail": "323719428"
+      "detail": "323738269"
     },
     {
-      "check": "deploy-MockStablecoin: created 0x34B161D6315C9874CEC85D54C0Ad7E8BaA208eEc",
+      "check": "deploy-MockStablecoin: created 0x11aa41C1D312931852DAD937718635f7949A4A82",
       "ok": true,
-      "detail": "0x34b161d6315c9874cec85d54c0ad7e8baa208eec"
+      "detail": "0x11aa41c1d312931852dad937718635f7949a4a82"
     },
     {
       "check": "deploy-ZillaEscrow: status success",
       "ok": true
     },
     {
-      "check": "deploy-ZillaEscrow: block 323719441",
+      "check": "deploy-ZillaEscrow: block 323738275",
       "ok": true,
-      "detail": "323719441"
+      "detail": "323738275"
     },
     {
-      "check": "deploy-ZillaEscrow: created 0xC2FeC2D41a795D75286D8E52192A09CD1a3C8dd2",
+      "check": "deploy-ZillaEscrow: created 0x0f5D52BbaBF08Ee90DD349E11FcbC3CAe6FB3EeD",
       "ok": true,
-      "detail": "0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2"
+      "detail": "0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed"
     },
     {
       "check": "create: status success",
       "ok": true
     },
     {
-      "check": "create: block 323719454",
+      "check": "create: block 323738281",
       "ok": true,
-      "detail": "323719454"
+      "detail": "323738281"
     },
     {
       "check": "create: event names",
@@ -72,9 +72,9 @@
       "ok": true
     },
     {
-      "check": "accept: block 323719465",
+      "check": "accept: block 323738287",
       "ok": true,
-      "detail": "323719465"
+      "detail": "323738287"
     },
     {
       "check": "accept: event names",
@@ -95,9 +95,9 @@
       "ok": true
     },
     {
-      "check": "mint: block 323719477",
+      "check": "mint: block 323738293",
       "ok": true,
-      "detail": "323719477"
+      "detail": "323738293"
     },
     {
       "check": "mint: event names",
@@ -118,9 +118,9 @@
       "ok": true
     },
     {
-      "check": "approve: block 323719489",
+      "check": "approve: block 323738298",
       "ok": true,
-      "detail": "323719489"
+      "detail": "323738298"
     },
     {
       "check": "approve: event names",
@@ -141,9 +141,9 @@
       "ok": true
     },
     {
-      "check": "fund-p1: block 323719499",
+      "check": "fund-p1: block 323738303",
       "ok": true,
-      "detail": "323719499"
+      "detail": "323738303"
     },
     {
       "check": "fund-p1: event names",
@@ -164,9 +164,9 @@
       "ok": true
     },
     {
-      "check": "proof-p1: block 323719510",
+      "check": "proof-p1: block 323738309",
       "ok": true,
-      "detail": "323719510"
+      "detail": "323738309"
     },
     {
       "check": "proof-p1: event names",
@@ -187,9 +187,9 @@
       "ok": true
     },
     {
-      "check": "release-p1: block 323719521",
+      "check": "release-p1: block 323738315",
       "ok": true,
-      "detail": "323719521"
+      "detail": "323738315"
     },
     {
       "check": "release-p1: event names",
@@ -210,9 +210,9 @@
       "ok": true
     },
     {
-      "check": "fund-p2: block 323719532",
+      "check": "fund-p2: block 323738319",
       "ok": true,
-      "detail": "323719532"
+      "detail": "323738319"
     },
     {
       "check": "fund-p2: event names",
@@ -233,9 +233,9 @@
       "ok": true
     },
     {
-      "check": "co-propose: block 323719545",
+      "check": "co-propose: block 323738325",
       "ok": true,
-      "detail": "323719545"
+      "detail": "323738325"
     },
     {
       "check": "co-propose: event names",
@@ -256,9 +256,9 @@
       "ok": true
     },
     {
-      "check": "co-approve: block 323719555",
+      "check": "co-approve: block 323738330",
       "ok": true,
-      "detail": "323719555"
+      "detail": "323738330"
     },
     {
       "check": "co-approve: event names",
@@ -279,9 +279,9 @@
       "ok": true
     },
     {
-      "check": "fund-co: block 323719565",
+      "check": "fund-co: block 323738335",
       "ok": true,
-      "detail": "323719565"
+      "detail": "323738335"
     },
     {
       "check": "fund-co: event names",
@@ -302,9 +302,9 @@
       "ok": true
     },
     {
-      "check": "proof-p2: block 323719571",
+      "check": "proof-p2: block 323738341",
       "ok": true,
-      "detail": "323719571"
+      "detail": "323738341"
     },
     {
       "check": "proof-p2: event names",
@@ -343,7 +343,7 @@
     {
       "check": "final agreement.token",
       "ok": true,
-      "detail": "0x34b161d6315c9874cec85d54c0ad7e8baa208eec"
+      "detail": "0x11aa41c1d312931852dad937718635f7949a4a82"
     },
     {
       "check": "final agreement.status",

@@ -78,6 +78,11 @@ export const escrowAbi = [
         "name": "scopeHash",
         "type": "bytes32",
         "internalType": "bytes32"
+      },
+      {
+        "name": "expectedAgent",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "outputs": [],
@@ -1422,6 +1427,11 @@ export const escrowAbi = [
       }
     ],
     "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AgentMismatch",
+    "inputs": []
   },
   {
     "type": "error",

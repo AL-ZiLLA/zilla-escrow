@@ -60,12 +60,13 @@ The deploy script refuses any chain other than Arbitrum Sepolia (421614) or a lo
 
 ## Status
 
-- Contracts and tests: 62 Foundry tests pass, 100% line, statement, branch and function coverage on `ZillaEscrow.sol`.
-- Testnet deployment: recorded on Arbitrum Sepolia (chain 421614) on 2026-10-28, after the review fixes (arbiter timeout, delivered-work protection, agent consent). The demo app replays that run, and every transaction and contract links to Arbiscan.
-  - ZillaEscrow: [`0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2`](https://sepolia.arbiscan.io/address/0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2)
-  - Mock test token (no value): [`0x34b161d6315c9874cec85d54c0ad7e8baa208eec`](https://sepolia.arbiscan.io/address/0x34b161d6315c9874cec85d54c0ad7e8baa208eec)
-  - Prior version (superseded, before the review fixes): ZillaEscrow [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421), recorded in `web/src/data/run-v1.json`.
-- Contract source is not yet verified on Arbiscan.
+- Contracts and tests: 67 Foundry tests pass, 100% line, statement, branch and function coverage on `ZillaEscrow.sol`.
+- Testnet deployment (v3): recorded on Arbitrum Sepolia (chain 421614) on 2026-10-28, after the second review round (proof can be posted during a dispute, the no-proof timeout refund waits for due date plus grace, and the delivery agent is bound into acceptance). The demo app replays that run, and every transaction and contract links to Arbiscan. Source verified on Arbiscan.
+  - ZillaEscrow: [`0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed`](https://sepolia.arbiscan.io/address/0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed#code)
+  - Mock test token (no value): [`0x11aa41c1d312931852dad937718635f7949a4a82`](https://sepolia.arbiscan.io/address/0x11aa41c1d312931852dad937718635f7949a4a82#code)
+- Prior versions (superseded, kept for the record):
+  - v2, after the first review fixes: ZillaEscrow [`0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2`](https://sepolia.arbiscan.io/address/0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2#code) (verified), recorded in `web/src/data/run-v2.json`.
+  - v1, before the review fixes: ZillaEscrow [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421), recorded in `web/src/data/run-v1.json`.
 - Not audited. Legal review before mainnet.
 
 Internal planning index: Zilla brain, tag `zilla-escrow` (latest index note).

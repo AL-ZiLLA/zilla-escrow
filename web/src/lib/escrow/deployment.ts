@@ -4,11 +4,12 @@
  *
  * The v2 review UI under src/components/escrow renders fictional fixtures with sample
  * hashes and addresses. Only values in `recordedValues` (this run, plus the prior
- * version's run) may become explorer links; everything else renders unlinked with a
+ * versions' runs) may become explorer links; everything else renders unlinked with a
  * visible "sample" chip. See HashValue.tsx.
  */
 import { run } from "@/lib/run";
-import priorRun from "@/data/run-v1.json";
+import runV1 from "@/data/run-v1.json";
+import runV2 from "@/data/run-v2.json";
 
 export const deployment = {
   network: run.network,
@@ -18,15 +19,26 @@ export const deployment = {
   txCount: run.steps.length,
 } as const;
 
-/** The first deployment (before the 2026-10-28 review fixes). Kept for the record only. */
-export const priorDeployment = {
-  escrow: priorRun.contracts.escrow as `0x${string}`,
-  token: priorRun.contracts.token as `0x${string}`,
-  deployBlock: priorRun.contracts.deployBlock,
-} as const;
+/** Earlier deployments, newest first. Superseded and kept for the record only. */
+export const priorDeployments = [
+  {
+    label: "v2",
+    note: "after the first review fixes, before the dispute and agent-binding fixes. Verified. Superseded.",
+    escrow: runV2.contracts.escrow as `0x${string}`,
+    token: runV2.contracts.token as `0x${string}`,
+    deployBlock: runV2.contracts.deployBlock,
+  },
+  {
+    label: "v1",
+    note: "first deployment, before the 2026-10-28 review fixes. Superseded.",
+    escrow: runV1.contracts.escrow as `0x${string}`,
+    token: runV1.contracts.token as `0x${string}`,
+    deployBlock: runV1.contracts.deployBlock,
+  },
+] as const;
 
 const values = new Set<string>();
-for (const r of [run, priorRun as unknown as typeof run]) {
+for (const r of [run, runV2 as unknown as typeof run, runV1 as unknown as typeof run]) {
   values.add(r.contracts.escrow.toLowerCase());
   values.add(r.contracts.token.toLowerCase());
   for (const a of Object.values(r.roles)) values.add(a.toLowerCase());
