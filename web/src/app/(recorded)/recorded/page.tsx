@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LiveCheck } from "@/components/recorded/LiveCheck";
 import { Timeline } from "@/components/recorded/Timeline";
 import { AddressLink, Card, Eyebrow, SectionTitle } from "@/components/recorded/ui";
@@ -5,6 +6,7 @@ import { Walkthrough } from "@/components/recorded/Walkthrough";
 import tests from "@/data/tests.json";
 import { ROLE_LABEL, run, type RoleKey } from "@/lib/run";
 import { REPO_URL } from "@/lib/site";
+import { priorDeployment } from "@/lib/escrow/deployment";
 
 const isLocal = run.network.chainId === 31337;
 
@@ -25,6 +27,9 @@ const GUARDS: [string, string][] = [
   ["Silent client", "The provider can claim 14 days after posting proof if the client never responds."],
   ["Missed deadline", "The client can take back a funded phase 7 days after its due date if no proof was posted."],
   ["Disputes", "Either party can freeze a phase. A named arbiter splits it, and the remainder goes to the client."],
+  ["Silent arbiter", "If the arbiter has not ruled 30 days after a dispute opens, either party can settle: an even split if proof was posted, otherwise a full refund to the client."],
+  ["Delivered work stays protected", "Once proof is posted, the missed-deadline refund no longer applies, even if a later change order raises the price."],
+  ["Agent changes need consent", "After acceptance the provider can only propose a new delivery agent. The client must approve it."],
 ];
 
 export default function Home() {
@@ -41,6 +46,7 @@ export default function Home() {
             Zilla Escrow
           </a>
           <nav aria-label="Sections" className="hidden items-center gap-6 text-sm text-muted md:flex">
+            <Link className="hover:text-bone" href="/">Escrow app</Link>
             <a className="hover:text-bone" href="#demo">Demo</a>
             <a className="hover:text-bone" href="#audit">Audit trail</a>
             <a className="hover:text-bone" href="#contract">Contract</a>
@@ -173,6 +179,15 @@ export default function Home() {
                 {(["client", "provider", "agent", "arbiter"] as RoleKey[]).map((r) => (
                   <Row key={r} k={ROLE_LABEL[r]} v={<AddressLink address={run.roles[r]} />} />
                 ))}
+                <Row
+                  k="Prior version"
+                  v={
+                    <span>
+                      <AddressLink address={priorDeployment.escrow} />{" "}
+                      <span className="text-muted">first deployment, before the 2026-10-28 review fixes. Superseded.</span>
+                    </span>
+                  }
+                />
               </dl>
               <div className="mt-5 border-t border-line pt-5">
                 <LiveCheck />

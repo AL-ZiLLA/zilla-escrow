@@ -5,7 +5,7 @@ import { HashValue } from './HashValue';
 import { TestnetBadge } from './TestnetBadge';
 export function ReleaseDialog({ open, milestone, phase, provider, providerName, busy, onClose, onRelease }: { open: boolean; milestone: Milestone; phase: Phase; provider: string; providerName: string; busy: boolean; onClose: () => void; onRelease: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => { if (open && !ref.current?.open) ref.current?.showModal(); else if (!open && ref.current?.open) ref.current.close(); }, [open]);
+  useEffect(() => { if (open && !ref.current?.open) { ref.current?.showModal(); ref.current?.scrollTo({ top: 0 }); } else if (!open && ref.current?.open) ref.current.close(); }, [open]);
   return <dialog ref={ref} className="esc-dialog" aria-labelledby="release-title" onCancel={onClose} onClose={onClose} onKeyDown={event => {
     if (event.key !== 'Tab') return;
     const targets = ref.current?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), [tabindex="0"]');
