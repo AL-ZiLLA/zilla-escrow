@@ -1,4 +1,4 @@
-import { fmtDateTime, ROLE_LABEL, run } from "@/lib/run";
+import { fmtDateTime, ROLE_LABEL, run, txUrl } from "@/lib/run";
 import { TxLink } from "./ui";
 
 const EVENT_TONE: Record<string, string> = {
@@ -23,6 +23,7 @@ export function Timeline() {
           acc[e.name] = (acc[e.name] ?? 0) + 1;
           return acc;
         }, {});
+        const logsUrl = txUrl(s.txHash) ? `${txUrl(s.txHash)}#eventlog` : null;
         return (
           <li key={s.txHash} className="relative pb-6 last:pb-0">
             <span
@@ -37,12 +38,26 @@ export function Timeline() {
                 <p className="font-semibold">{s.title}</p>
                 <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]">
                   <span className="text-muted">{ROLE_LABEL[s.role]}</span>
-                  {Object.entries(counts).map(([name, c]) => (
-                    <span key={name} className={EVENT_TONE[name] ?? "text-muted"}>
-                      {name}
-                      {c > 1 ? ` ×${c}` : ""}
-                    </span>
-                  ))}
+                  {Object.entries(counts).map(([name, c]) =>
+                    logsUrl ? (
+                      <a
+                        key={name}
+                        href={logsUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={`View ${name} in the Arbiscan event log`}
+                        className={`underline decoration-line underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zilla ${EVENT_TONE[name] ?? "text-muted"}`}
+                      >
+                        {name}
+                        {c > 1 ? ` ×${c}` : ""}
+                      </a>
+                    ) : (
+                      <span key={name} className={EVENT_TONE[name] ?? "text-muted"}>
+                        {name}
+                        {c > 1 ? ` ×${c}` : ""}
+                      </span>
+                    ),
+                  )}
                   {s.key.startsWith("deploy") ? <span className="text-dim">contract creation</span> : null}
                 </p>
               </div>

@@ -52,13 +52,13 @@ export default function Home() {
           </nav>
           <p
             className={`border px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider ${
-              isLocal ? "border-warn/50 text-warn" : "border-ok/50 text-ok"
+              "border-warn/50 text-warn"
             }`}
           >
             <span className="sr-only">Network: </span>
-            Testnet
-            <span className="hidden sm:inline"> · {isLocal ? "Local rehearsal" : run.network.name}</span>
-            <span className="hidden lg:inline"> · test tokens, no value</span>
+            <span className="sm:hidden">Testnet</span>
+            <span className="hidden sm:inline">{isLocal ? "Testnet · Local rehearsal" : `${run.network.name} testnet`}</span>
+            <span className="hidden lg:inline"> · Not audited · test tokens, no value</span>
           </p>
         </div>
       </header>
@@ -112,7 +112,7 @@ export default function Home() {
                   made up, and payments use a mock token with no value.{" "}
                   {isLocal
                     ? "This recording comes from a local rehearsal chain. Public explorer links appear once the same run is repeated on Arbitrum Sepolia."
-                    : "Each transaction links to Arbiscan."}
+                    : "Every transaction and contract below links to Arbiscan on Arbitrum Sepolia, so each step can be checked on the public testnet."}
                 </>
               }
             />

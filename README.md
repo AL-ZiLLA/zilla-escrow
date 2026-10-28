@@ -54,12 +54,17 @@ KEYS_FILE=/path/outside/repo/testnet.env NETWORK=arbitrum-sepolia \
   RPC_URL=https://sepolia-rollup.arbitrum.io/rpc pnpm demo:run
 ```
 
+Before deploying, the script tops up the client, provider and agent accounts from the deployer to `GAS_FLOOR_WEI` (default 0.0003 ETH each). On Arbitrum Sepolia the whole run used about 0.0001 ETH of gas, so `GAS_FLOOR_WEI=60000000000000` (0.00006 ETH) is enough and fits inside a single 0.001 ETH faucet claim.
+
 The deploy script refuses any chain other than Arbitrum Sepolia (421614) or a local anvil (31337).
 
 ## Status
 
-- Contracts and tests: done locally.
-- Demo app: replays a local anvil rehearsal. It switches to Arbitrum Sepolia explorer links once the same run is recorded there.
+- Contracts and tests: 47 Foundry tests pass.
+- Testnet deployment: recorded on Arbitrum Sepolia (chain 421614). The demo app replays that run, and every transaction and contract links to Arbiscan.
+  - ZillaEscrow: [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421)
+  - Mock test token (no value): [`0x60ea8357ce1747bf13eccb86d026163a246429a1`](https://sepolia.arbiscan.io/address/0x60ea8357ce1747bf13eccb86d026163a246429a1)
+- Contract source is not yet verified on Arbiscan.
 - Not audited. Legal review before mainnet.
 
-Internal planning index: Zilla brain `note-20261027-050`.
+Internal planning index: Zilla brain, tag `zilla-escrow` (latest index note).
