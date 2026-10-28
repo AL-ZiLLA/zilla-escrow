@@ -1,0 +1,1411 @@
+{
+  "base": "http://127.0.0.1:3215",
+  "at": "2026-10-28T16:13:11.952Z",
+  "total": 232,
+  "failed": 0,
+  "results": [
+    {
+      "group": "routes@1280",
+      "name": "/ 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/ testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/connect 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/connect testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/create 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/create testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/accept 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/accept testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/agreement 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/agreement testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/milestones 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/milestones testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/timeline 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/timeline testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/scope 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/scope testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/fund 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/fund testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/proof 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/proof testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/proof/p1 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/proof/p1 testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/release 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/release testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/changes 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/changes testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/dispute 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/dispute testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/activity 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/activity testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/states 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@1280",
+      "name": "/states testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@1280",
+      "name": "/recorded 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/ 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/ testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/connect 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/connect testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/create 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/create testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/accept 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/accept testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/agreement 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/agreement testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/milestones 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/milestones testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/timeline 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/timeline testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/scope 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/scope testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/fund 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/fund testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/proof 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/proof testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/proof/p1 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/proof/p1 testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/release 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/release testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/changes 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/changes testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/dispute 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/dispute testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/activity 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/activity testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/states 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "routes@390",
+      "name": "/states testnet + demo notices present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "routes@390",
+      "name": "/recorded 200, h1, no overflow, no console errors",
+      "ok": true,
+      "detail": "status 200 h1 1 overflow 0 errors "
+    },
+    {
+      "group": "client",
+      "name": "landing gate reaches Released",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "connecting state shows preview label",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "connected shows role client",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "wrong network recovers",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "faucet buttons disabled (no invented faucets)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "review step shows fingerprint",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "created -> proposed notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "empty title is rejected (native required or inline error)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "accept disabled before checkbox",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "hash mismatch error shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "scope acceptance previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "approve step confirmed, fund step unlocked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "P4 funding previewed notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "notice says no transaction sent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "money summary changed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "insufficient balance state renders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "top-up fixture explains CO-2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "client sees Review release",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "client does not see proof composer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "dialog opens (modal)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "focus lands on Keep reviewing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "Tab stays inside dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "desktop dialog keeps sticky testnet notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "Escape closes dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "release previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "released state persists across client navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "approve disabled until checkbox",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "CO-2 approval previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "earlier due date rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "change request proposal previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "stale error renders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "confirm region appears",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "dispute opened previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "take back disabled before window",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "take back enabled after window",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "Keep reviewing cancels confirm",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "client cannot return provider funds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "Money filter narrows list",
+      "ok": true,
+      "detail": "12 -> 4"
+    },
+    {
+      "group": "client",
+      "name": "Disputes empty state links to fixtures",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "export downloads JSON of all events",
+      "ok": true,
+      "detail": "12 events"
+    },
+    {
+      "group": "client",
+      "name": "all system states render without errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "client",
+      "name": "no console errors in client flow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "connected shows provider",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider can cancel, not accept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "cancelled state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider sees proof composer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider has no Review release",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "local pack fingerprint updates with links",
+      "ok": true,
+      "detail": "0x0c0058…ae3c2 -> 0x4779c1…73fa7"
+    },
+    {
+      "group": "provider",
+      "name": "proof submission previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "submit disabled after post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "/proof/p1 renders P1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "Review release disabled for provider",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider cannot approve own CO-2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "withdraw previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider proposal review",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider proposal previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "voluntary refund previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "claim disabled before window",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "claim previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "provider cannot fund (client-only)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "split confirmation shows totals",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "resolution previewed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "viewer notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "viewer cannot release",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "provider",
+      "name": "no console errors in provider flow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "toggle sets light + aria-pressed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "light theme applied before hydration on next route",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "light persists on reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "theme syncs across tabs via storage event",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "More menu summary visible on mobile",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "menu opens with actions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "menu link navigates to /fund",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "testnet banner does not cover dialog heading at 390",
+      "ok": true,
+      "detail": "{\"overlap\":false,\"h\":[188.6875,213.875],\"t\":[86.296875,137.890625]}"
+    },
+    {
+      "group": "ux",
+      "name": "dialog opens scrolled to top with notice visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "banner does not stick over content when scrolled (390)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "focus still inside dialog on Keep reviewing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "first Tab focuses skip link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "skip link targets #main",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "every tab stop up to the end of the page (max 25) shows a visible focus style",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "Shift+Tab works",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "Enter activates fund step button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ux",
+      "name": "/ no animations/transitions under reduce",
+      "ok": true,
+      "detail": "0 moving elements"
+    },
+    {
+      "group": "ux",
+      "name": "/agreement no animations/transitions under reduce",
+      "ok": true,
+      "detail": "0 moving elements"
+    },
+    {
+      "group": "ux",
+      "name": "/recorded no animations/transitions under reduce",
+      "ok": true,
+      "detail": "0 moving elements"
+    },
+    {
+      "group": "recorded",
+      "name": "all explorer links are sepolia.arbiscan.io and match run.json",
+      "ok": true,
+      "detail": "33 links, bad: "
+    },
+    {
+      "group": "recorded",
+      "name": "every recorded agreement tx is linked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "recorded",
+      "name": "live read returns matching state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "every explorer link on the 16 app routes is a real recorded value",
+      "ok": true,
+      "detail": "1 links, bad: "
+    },
+    {
+      "group": "review-fixes",
+      "name": "no cohort or mentorship copy on landing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "no \"deployment is not supplied\" claim",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "landing links the deployed escrow on Arbiscan",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "landing links /recorded with the real tx count",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "footer carries the money-transmission caveat",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "wallet chip reads \"Preview as\" and hides the sample address",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "demo controls labelled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "sample chips shown on fixture hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "faucet note says coming soon, no dev note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "review-fixes",
+      "name": "sidebar links /recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/ dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/connect dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/create dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/accept dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/agreement dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/milestones dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/timeline dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/scope dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/fund dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof/p1 dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/release dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/changes dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/dispute dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/activity dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/states dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/recorded dark 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/ dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/connect dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/create dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/accept dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/agreement dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/milestones dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/timeline dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/scope dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/fund dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof/p1 dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/release dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/changes dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/dispute dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/activity dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/states dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/recorded dark 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/ light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/connect light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/create light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/accept light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/agreement light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/milestones light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/timeline light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/scope light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/fund light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof/p1 light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/release light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/changes light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/dispute light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/activity light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/states light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/recorded light 1280 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/ light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/connect light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/create light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/accept light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/agreement light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/milestones light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/timeline light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/scope light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/fund light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/proof/p1 light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/release light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/changes light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/dispute light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/activity light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/states light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "/recorded light 390 axe WCAG 2.1 AA",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "shots": [
+    "../docs/screenshots/e2e/client-fund-done-1280.png",
+    "../docs/screenshots/e2e/client-release-dialog-1280.png",
+    "../docs/screenshots/e2e/provider-proof-submitted-1280.png",
+    "../docs/screenshots/e2e/provider-fund-1280.png",
+    "../docs/screenshots/e2e/mobile-menu-open-390.png",
+    "../docs/screenshots/e2e/mobile-release-dialog-390.png",
+    "../docs/screenshots/e2e/recorded-1280.png",
+    "../docs/screenshots/e2e/recorded-live-read-1280.png",
+    "../docs/screenshots/e2e/landing-review-fixes-1280.png"
+  ]
+}
