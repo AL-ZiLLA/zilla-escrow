@@ -1,0 +1,482 @@
+{
+  "base": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app",
+  "ranAt": "2026-10-28T16:54:35.231Z",
+  "axeVersion": "4.14.0",
+  "tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa"
+  ],
+  "runs": {
+    "/unlock dark 1280": {
+      "status": 200,
+      "path": "/unlock",
+      "theme": "dark",
+      "violations": []
+    },
+    "/ dark 1280": {
+      "status": 200,
+      "path": "/",
+      "theme": "dark",
+      "violations": []
+    },
+    "/connect dark 1280": {
+      "status": 200,
+      "path": "/connect",
+      "theme": "dark",
+      "violations": []
+    },
+    "/create dark 1280": {
+      "status": 200,
+      "path": "/create",
+      "theme": "dark",
+      "violations": []
+    },
+    "/accept dark 1280": {
+      "status": 200,
+      "path": "/accept",
+      "theme": "dark",
+      "violations": []
+    },
+    "/agreement dark 1280": {
+      "status": 200,
+      "path": "/agreement",
+      "theme": "dark",
+      "violations": []
+    },
+    "/milestones dark 1280": {
+      "status": 200,
+      "path": "/milestones",
+      "theme": "dark",
+      "violations": []
+    },
+    "/timeline dark 1280": {
+      "status": 200,
+      "path": "/timeline",
+      "theme": "dark",
+      "violations": []
+    },
+    "/scope dark 1280": {
+      "status": 200,
+      "path": "/scope",
+      "theme": "dark",
+      "violations": []
+    },
+    "/fund dark 1280": {
+      "status": 200,
+      "path": "/fund",
+      "theme": "dark",
+      "violations": []
+    },
+    "/proof dark 1280": {
+      "status": 200,
+      "path": "/proof",
+      "theme": "dark",
+      "violations": []
+    },
+    "/proof/p1 dark 1280": {
+      "status": 200,
+      "path": "/proof/p1",
+      "theme": "dark",
+      "violations": []
+    },
+    "/release dark 1280": {
+      "status": 200,
+      "path": "/release",
+      "theme": "dark",
+      "violations": []
+    },
+    "/changes dark 1280": {
+      "status": 200,
+      "path": "/changes",
+      "theme": "dark",
+      "violations": []
+    },
+    "/dispute dark 1280": {
+      "status": 200,
+      "path": "/dispute",
+      "theme": "dark",
+      "violations": []
+    },
+    "/activity dark 1280": {
+      "status": 200,
+      "path": "/activity",
+      "theme": "dark",
+      "violations": []
+    },
+    "/states dark 1280": {
+      "status": 200,
+      "path": "/states",
+      "theme": "dark",
+      "violations": []
+    },
+    "/recorded dark 1280": {
+      "status": 200,
+      "path": "/recorded",
+      "theme": null,
+      "violations": []
+    },
+    "/unlock dark 390": {
+      "status": 200,
+      "path": "/unlock",
+      "theme": "dark",
+      "violations": []
+    },
+    "/ dark 390": {
+      "status": 200,
+      "path": "/",
+      "theme": "dark",
+      "violations": []
+    },
+    "/connect dark 390": {
+      "status": 200,
+      "path": "/connect",
+      "theme": "dark",
+      "violations": []
+    },
+    "/create dark 390": {
+      "status": 200,
+      "path": "/create",
+      "theme": "dark",
+      "violations": []
+    },
+    "/accept dark 390": {
+      "status": 200,
+      "path": "/accept",
+      "theme": "dark",
+      "violations": []
+    },
+    "/agreement dark 390": {
+      "status": 200,
+      "path": "/agreement",
+      "theme": "dark",
+      "violations": []
+    },
+    "/milestones dark 390": {
+      "status": 200,
+      "path": "/milestones",
+      "theme": "dark",
+      "violations": []
+    },
+    "/timeline dark 390": {
+      "status": 200,
+      "path": "/timeline",
+      "theme": "dark",
+      "violations": []
+    },
+    "/scope dark 390": {
+      "status": 200,
+      "path": "/scope",
+      "theme": "dark",
+      "violations": []
+    },
+    "/fund dark 390": {
+      "status": 200,
+      "path": "/fund",
+      "theme": "dark",
+      "violations": []
+    },
+    "/proof dark 390": {
+      "status": 200,
+      "path": "/proof",
+      "theme": "dark",
+      "violations": []
+    },
+    "/proof/p1 dark 390": {
+      "status": 200,
+      "path": "/proof/p1",
+      "theme": "dark",
+      "violations": []
+    },
+    "/release dark 390": {
+      "status": 200,
+      "path": "/release",
+      "theme": "dark",
+      "violations": []
+    },
+    "/changes dark 390": {
+      "status": 200,
+      "path": "/changes",
+      "theme": "dark",
+      "violations": []
+    },
+    "/dispute dark 390": {
+      "status": 200,
+      "path": "/dispute",
+      "theme": "dark",
+      "violations": []
+    },
+    "/activity dark 390": {
+      "status": 200,
+      "path": "/activity",
+      "theme": "dark",
+      "violations": []
+    },
+    "/states dark 390": {
+      "status": 200,
+      "path": "/states",
+      "theme": "dark",
+      "violations": []
+    },
+    "/recorded dark 390": {
+      "status": 200,
+      "path": "/recorded",
+      "theme": null,
+      "violations": []
+    },
+    "/unlock light 1280": {
+      "status": 200,
+      "path": "/unlock",
+      "theme": "light",
+      "violations": []
+    },
+    "/ light 1280": {
+      "status": 200,
+      "path": "/",
+      "theme": "light",
+      "violations": []
+    },
+    "/connect light 1280": {
+      "status": 200,
+      "path": "/connect",
+      "theme": "light",
+      "violations": []
+    },
+    "/create light 1280": {
+      "status": 200,
+      "path": "/create",
+      "theme": "light",
+      "violations": []
+    },
+    "/accept light 1280": {
+      "status": 200,
+      "path": "/accept",
+      "theme": "light",
+      "violations": []
+    },
+    "/agreement light 1280": {
+      "status": 200,
+      "path": "/agreement",
+      "theme": "light",
+      "violations": []
+    },
+    "/milestones light 1280": {
+      "status": 200,
+      "path": "/milestones",
+      "theme": "light",
+      "violations": []
+    },
+    "/timeline light 1280": {
+      "status": 200,
+      "path": "/timeline",
+      "theme": "light",
+      "violations": []
+    },
+    "/scope light 1280": {
+      "status": 200,
+      "path": "/scope",
+      "theme": "light",
+      "violations": []
+    },
+    "/fund light 1280": {
+      "status": 200,
+      "path": "/fund",
+      "theme": "light",
+      "violations": []
+    },
+    "/proof light 1280": {
+      "status": 200,
+      "path": "/proof",
+      "theme": "light",
+      "violations": []
+    },
+    "/proof/p1 light 1280": {
+      "status": 200,
+      "path": "/proof/p1",
+      "theme": "light",
+      "violations": []
+    },
+    "/release light 1280": {
+      "status": 200,
+      "path": "/release",
+      "theme": "light",
+      "violations": []
+    },
+    "/changes light 1280": {
+      "status": 200,
+      "path": "/changes",
+      "theme": "light",
+      "violations": []
+    },
+    "/dispute light 1280": {
+      "status": 200,
+      "path": "/dispute",
+      "theme": "light",
+      "violations": []
+    },
+    "/activity light 1280": {
+      "status": 200,
+      "path": "/activity",
+      "theme": "light",
+      "violations": []
+    },
+    "/states light 1280": {
+      "status": 200,
+      "path": "/states",
+      "theme": "light",
+      "violations": []
+    },
+    "/recorded light 1280": {
+      "status": 200,
+      "path": "/recorded",
+      "theme": null,
+      "violations": []
+    },
+    "/unlock light 390": {
+      "status": 200,
+      "path": "/unlock",
+      "theme": "light",
+      "violations": []
+    },
+    "/ light 390": {
+      "status": 200,
+      "path": "/",
+      "theme": "light",
+      "violations": []
+    },
+    "/connect light 390": {
+      "status": 200,
+      "path": "/connect",
+      "theme": "light",
+      "violations": []
+    },
+    "/create light 390": {
+      "status": 200,
+      "path": "/create",
+      "theme": "light",
+      "violations": []
+    },
+    "/accept light 390": {
+      "status": 200,
+      "path": "/accept",
+      "theme": "light",
+      "violations": []
+    },
+    "/agreement light 390": {
+      "status": 200,
+      "path": "/agreement",
+      "theme": "light",
+      "violations": []
+    },
+    "/milestones light 390": {
+      "status": 200,
+      "path": "/milestones",
+      "theme": "light",
+      "violations": []
+    },
+    "/timeline light 390": {
+      "status": 200,
+      "path": "/timeline",
+      "theme": "light",
+      "violations": []
+    },
+    "/scope light 390": {
+      "status": 200,
+      "path": "/scope",
+      "theme": "light",
+      "violations": []
+    },
+    "/fund light 390": {
+      "status": 200,
+      "path": "/fund",
+      "theme": "light",
+      "violations": []
+    },
+    "/proof light 390": {
+      "status": 200,
+      "path": "/proof",
+      "theme": "light",
+      "violations": []
+    },
+    "/proof/p1 light 390": {
+      "status": 200,
+      "path": "/proof/p1",
+      "theme": "light",
+      "violations": []
+    },
+    "/release light 390": {
+      "status": 200,
+      "path": "/release",
+      "theme": "light",
+      "violations": []
+    },
+    "/changes light 390": {
+      "status": 200,
+      "path": "/changes",
+      "theme": "light",
+      "violations": []
+    },
+    "/dispute light 390": {
+      "status": 200,
+      "path": "/dispute",
+      "theme": "light",
+      "violations": []
+    },
+    "/activity light 390": {
+      "status": 200,
+      "path": "/activity",
+      "theme": "light",
+      "violations": []
+    },
+    "/states light 390": {
+      "status": 200,
+      "path": "/states",
+      "theme": "light",
+      "violations": []
+    },
+    "/recorded light 390": {
+      "status": 200,
+      "path": "/recorded",
+      "theme": null,
+      "violations": []
+    }
+  },
+  "tokens": {
+    "dark 1280": {
+      "--color-dim": [
+        "#8a8884"
+      ],
+      "--color-zilla-soft": [
+        "#e5435c"
+      ]
+    },
+    "dark 390": {
+      "--color-dim": [
+        "#8a8884"
+      ],
+      "--color-zilla-soft": [
+        "#e5435c"
+      ]
+    },
+    "light 1280": {
+      "--color-dim": [
+        "#8a8884"
+      ],
+      "--color-zilla-soft": [
+        "#e5435c"
+      ]
+    },
+    "light 390": {
+      "--color-dim": [
+        "#8a8884"
+      ],
+      "--color-zilla-soft": [
+        "#e5435c"
+      ]
+    }
+  },
+  "total": 72,
+  "violations": 0,
+  "errors": []
+}

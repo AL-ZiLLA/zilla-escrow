@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:3215",
-  "at": "2026-10-28T16:41:39.812Z",
+  "at": "2026-10-28T16:54:17.352Z",
   "total": 232,
   "failed": 0,
   "results": [
@@ -908,7 +908,7 @@
       "group": "recorded",
       "name": "all explorer links are sepolia.arbiscan.io and match run.json",
       "ok": true,
-      "detail": "33 links, bad: "
+      "detail": "34 links, bad: "
     },
     {
       "group": "recorded",
