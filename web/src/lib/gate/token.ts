@@ -48,8 +48,21 @@ export function verifyToken(config: GateConfig, token: string | undefined, now =
   return safeEqual(token.slice(dot + 1), sign(config, exp));
 }
 
-/** Only same-site relative paths survive, so ?next= can never redirect off the app. */
+/**
+ * Only same-origin relative paths survive, so ?next= can never redirect off the app.
+ * Rules: one leading '/', not '//' or '/\\', no backslash, whitespace or control character
+ * anywhere (URL parsing strips tab/CR/LF, which turned '/\t/evil' into '//evil'), and the
+ * resolved URL must keep this origin. Anything else falls back to '/'.
+ */
+const PROBE_ORIGIN = 'https://gate.invalid';
 export function safeNext(next: string | null | undefined): string {
-  if (!next || !next.startsWith('/') || next.startsWith('//') || next.startsWith('/\\') || next.startsWith('/unlock')) return '/';
-  return next;
+  if (typeof next !== 'string' || next.length === 0 || next.length > 1024) return '/';
+  if (next[0] !== '/' || next[1] === '/' || next[1] === '\\') return '/';
+  if (/[\u0000-\u0020\u007f-\u009f\\]/.test(next)) return '/';
+  let url: URL;
+  try { url = new URL(next, PROBE_ORIGIN); } catch { return '/'; }
+  if (url.origin !== PROBE_ORIGIN) return '/';
+  const out = url.pathname + url.search + url.hash;
+  if (!out.startsWith('/') || out.startsWith('//') || out === '/unlock' || out.startsWith('/unlock?') || out.startsWith('/unlock/') || out.startsWith('/unlock#')) return '/';
+  return out;
 }

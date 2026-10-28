@@ -32,8 +32,19 @@ test('tokens verify, expire after 30 days, and die when the password or secret r
 });
 
 test('next redirects stay on this site', () => {
-  assert.equal(safeNext('/fund?x=1'), '/fund?x=1');
-  for (const bad of [null, '', 'https://evil.example', '//evil.example', '/\\evil.example', '/unlock?next=/']) assert.equal(safeNext(bad), '/');
+  for (const ok of ['/', '/fund?x=1', '/agreement#m2', '/recorded?tab=tx&x=%2F%2Fa', '/unlockrecorded'])
+    assert.equal(safeNext(ok), ok);
+  const bad = [
+    null, undefined, '', 'fund', 'https://evil.example', 'http:evil.example', 'javascript:alert(1)', 'data:text/html,x',
+    '//evil.example', '///evil.example', '/\\evil.example', '\\\\evil.example', '/x\\..\\..\\evil',
+    // Tab, CR, LF and other control or space characters are stripped or folded by URL parsing.
+    '/\t/evil.example', '/\n/evil.example', '/\r/evil.example', '/ /evil.example', '/\u0000/evil', '/\u007f/evil', '/\u0085/evil',
+    ' /fund', '/fund ', '/unlock', '/unlock?next=/', '/unlock/x', '/./unlock', '/a/../unlock', '/..//evil.example',
+    '/' + 'a'.repeat(2000),
+  ];
+  for (const b of bad) assert.equal(safeNext(b as string), '/', JSON.stringify(b));
+  // Whatever survives must resolve to the same origin against any base.
+  for (const b of bad) assert.equal(new URL(safeNext(b as string), 'https://app.example').origin, 'https://app.example');
 });
 
 test('rate-limit-lite blocks after 8 failures in 10 minutes', () => {
