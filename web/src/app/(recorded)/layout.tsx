@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Geist, Geist_Mono } from "next/font/google";
+import { RegisterServiceWorker } from "@/components/pwa/RegisterServiceWorker";
+import { appleWebApp, pwaOther, themeColor } from "@/lib/pwa";
 import "./recorded.css";
 
 const display = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton" });
@@ -11,14 +13,17 @@ export const metadata: Metadata = {
   description:
     "Testnet demo. Clients fund each phase, delivery agents post proof, clients release with one click. Built by Zilla Labs on Arbitrum.",
   robots: { index: false, follow: false },
+  applicationName: "Zilla Escrow",
+  appleWebApp,
+  other: pwaOther,
 };
 
-export const viewport: Viewport = { themeColor: "#0a0a0a" };
+export const viewport: Viewport = { themeColor };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-      <body className="min-h-dvh">{children}</body>
+      <body className="min-h-dvh">{children}<RegisterServiceWorker /></body>
     </html>
   );
 }
