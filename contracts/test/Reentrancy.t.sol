@@ -79,7 +79,7 @@ contract ReentrancyTest is Test {
         });
         providerBot.call(abi.encodeCall(ZillaEscrow.createAgreement, (input)));
         id = escrow.agreementCount();
-        clientBot.call(abi.encodeCall(ZillaEscrow.acceptAgreement, (id, SCOPE)));
+        clientBot.call(abi.encodeCall(ZillaEscrow.acceptAgreement, (id, SCOPE, address(0))));
     }
 
     function test_reenterFundDuringFund_blocked() public {

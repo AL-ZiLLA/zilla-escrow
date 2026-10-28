@@ -235,6 +235,7 @@ contract ZillaEscrow is ReentrancyGuard {
     error UnknownMilestone();
     error UnknownChangeOrder();
     error HashMismatch();
+    error AgentMismatch();
     error NotFullyFunded();
     error NothingToFund();
     error TooEarly();
@@ -305,11 +306,17 @@ contract ZillaEscrow is ReentrancyGuard {
 
     /// @notice Counterparty acceptance. `scopeHash` must equal the proposed hash, proving the
     ///         signer saw the exact scope. The hash is frozen as the signed baseline (version 1).
-    function acceptAgreement(uint256 agreementId, bytes32 scopeHash) external {
+    ///         `expectedAgent` must equal the delivery agent on the agreement (address(0) for
+    ///         none), so an agent swapped in by the provider before acceptance cannot be accepted
+    ///         unseen.
+    function acceptAgreement(uint256 agreementId, bytes32 scopeHash, address expectedAgent)
+        external
+    {
         Agreement storage a = _agreement(agreementId);
         if (a.status != AgreementStatus.Proposed) revert WrongAgreementStatus();
         if (!_isParty(a, msg.sender) || msg.sender == a.creator) revert NotAuthorized();
         if (scopeHash != a.scopeHash) revert HashMismatch();
+        if (expectedAgent != a.agent) revert AgentMismatch();
         a.status = AgreementStatus.Active;
         a.baselineHash = scopeHash;
         a.version = 1;
@@ -394,6 +401,8 @@ contract ZillaEscrow is ReentrancyGuard {
 
     /// @notice Provider or its agent posts proof of delivery: a content hash of the delivery
     ///         pack plus a URI where the client can review it. Resubmitting replaces the proof.
+    ///         Proof may also be posted while the milestone is Disputed, so an early dispute
+    ///         cannot block delivery; the milestone stays Disputed for the arbiter.
     function submitProof(
         uint256 agreementId,
         uint256 index,
@@ -405,12 +414,16 @@ contract ZillaEscrow is ReentrancyGuard {
             revert NotAuthorized();
         }
         Milestone storage m = _milestone(a, agreementId, index);
-        if (m.status != MilestoneStatus.Funded && m.status != MilestoneStatus.Submitted) {
+        MilestoneStatus st = m.status;
+        if (
+            st != MilestoneStatus.Funded && st != MilestoneStatus.Submitted
+                && st != MilestoneStatus.Disputed
+        ) {
             revert WrongMilestoneStatus();
         }
         if (m.funded != m.amount) revert NotFullyFunded();
         if (proofHash == bytes32(0)) revert InvalidHash();
-        m.status = MilestoneStatus.Submitted;
+        if (st != MilestoneStatus.Disputed) m.status = MilestoneStatus.Submitted;
         m.proofHash = proofHash;
         m.proofURI = proofURI;
         m.submittedAt = uint64(block.timestamp);
@@ -500,7 +513,9 @@ contract ZillaEscrow is ReentrancyGuard {
     /// @notice Exit for a dispute the arbiter never rules on. After ARBITER_TIMEOUT either party
     ///         may settle with the default split: if proof was posted, the held funds are split
     ///         evenly (odd unit to the client); if no proof was ever posted, all of it returns to
-    ///         the client. Emits `DisputeResolved` with `arbiter == address(0)`.
+    ///         the client, but only once the milestone is also REFUND_GRACE past its due date, so
+    ///         an early dispute cannot claw back work that was not yet due. Emits
+    ///         `DisputeResolved` with `arbiter == address(0)`.
     function resolveDisputeAfterTimeout(uint256 agreementId, uint256 index) external nonReentrant {
         Agreement storage a = _activeAgreement(agreementId);
         if (msg.sender != a.client && msg.sender != a.provider) revert NotAuthorized();
@@ -509,7 +524,9 @@ contract ZillaEscrow is ReentrancyGuard {
         if (block.timestamp < uint256(disputedAt[agreementId][index]) + ARBITER_TIMEOUT) {
             revert TooEarly();
         }
-        uint128 toProvider = m.proofHash != bytes32(0) ? m.funded / 2 : 0;
+        bool delivered = m.proofHash != bytes32(0);
+        if (!delivered && block.timestamp <= uint256(m.dueDate) + REFUND_GRACE) revert TooEarly();
+        uint128 toProvider = delivered ? m.funded / 2 : 0;
         _settleDispute(a, m, agreementId, index, toProvider, address(0));
     }
 

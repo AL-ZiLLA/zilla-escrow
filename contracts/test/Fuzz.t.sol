@@ -14,7 +14,7 @@ contract ZillaEscrowFuzzTest is Base {
         vm.prank(provider);
         id = escrow.createAgreement(input);
         vm.prank(client);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
     }
 
     function testFuzz_fundRelease_conservesValue(uint128 amount, uint64 dueIn) public {

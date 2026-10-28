@@ -17,10 +17,10 @@ A provider turns a signed scope into an on-chain agreement. The client funds eac
 
 ## How the contract works
 
-- **Agreement.** `createAgreement` stores the client, provider, delivery agent, token, phases and a `scopeHash` (keccak256 of the canonical scope JSON). `acceptAgreement` has the client confirm that exact hash, which freezes it as `baselineHash`.
+- **Agreement.** `createAgreement` stores the client, provider, delivery agent, token, phases and a `scopeHash` (keccak256 of the canonical scope JSON). `acceptAgreement` has the client confirm that exact hash and the delivery agent it saw (so an agent swapped in before acceptance makes the acceptance revert), and freezes the hash as `baselineHash`.
 - **Phases.** `fundMilestone` pulls the phase payment into escrow. The agent or provider calls `submitProof` with a proof hash and URI. The client calls `release`.
 - **Change orders.** `proposeChangeOrder` prices a change against the current scope version (top up a phase or add one, move a due date, new scope hash). `approveChangeOrder` applies it and bumps the version. Stale change orders cannot be approved.
-- **Safety valves.** `claimAfterReview` pays the provider if the client goes silent after proof. `refundExpired` returns a funded phase after its due date if no proof arrived. `openDispute` freezes a phase and a named arbiter splits it with `resolveDispute`.
+- **Safety valves.** `claimAfterReview` pays the provider if the client goes silent after proof. `refundExpired` returns a funded phase after its due date if no proof arrived. `openDispute` freezes a phase and a named arbiter splits it with `resolveDispute`. Proof can still be posted while a phase is disputed. If the arbiter is silent for 30 days, either party can settle: delivered work splits evenly, and undelivered work refunds the client only once the phase is also 7 days past its due date.
 - **No admin.** No owner, pause or upgrade path. State-changing calls are non-reentrant, and fee-on-transfer tokens are rejected so held funds always equal the token balance.
 
 ## Run it

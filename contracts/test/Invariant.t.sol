@@ -44,7 +44,7 @@ contract Handler is Test {
         vm.prank(provider);
         uint256 id = escrow.createAgreement(input);
         vm.prank(client);
-        escrow.acceptAgreement(id, BASE);
+        escrow.acceptAgreement(id, BASE, address(0));
         ids.push(id);
     }
 

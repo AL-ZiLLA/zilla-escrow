@@ -39,7 +39,7 @@ contract ZillaEscrowLifecycleTest is Base {
         uint256 id = escrow.createAgreement(_input(IERC20(address(usd))));
         vm.prank(client);
         vm.expectRevert(ZillaEscrow.HashMismatch.selector);
-        escrow.acceptAgreement(id, SCOPE_V2);
+        escrow.acceptAgreement(id, SCOPE_V2, agent);
     }
 
     function test_accept_creatorCannotSelfAccept() public {
@@ -47,7 +47,7 @@ contract ZillaEscrowLifecycleTest is Base {
         uint256 id = escrow.createAgreement(_input(IERC20(address(usd))));
         vm.prank(provider);
         vm.expectRevert(ZillaEscrow.NotAuthorized.selector);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
     }
 
     function test_accept_strangerCannotAccept() public {
@@ -55,14 +55,14 @@ contract ZillaEscrowLifecycleTest is Base {
         uint256 id = escrow.createAgreement(_input(IERC20(address(usd))));
         vm.prank(stranger);
         vm.expectRevert(ZillaEscrow.NotAuthorized.selector);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
     }
 
     function test_create_clientCanCreateAndProviderAccepts() public {
         vm.prank(client);
         uint256 id = escrow.createAgreement(_input(IERC20(address(usd))));
         vm.prank(provider);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
         assertEq(escrow.getAgreement(id).version, 1);
     }
 
@@ -137,7 +137,7 @@ contract ZillaEscrowLifecycleTest is Base {
         escrow.cancelAgreement(id);
         vm.prank(client);
         vm.expectRevert(ZillaEscrow.WrongAgreementStatus.selector);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
     }
 
     function test_actionsBlockedBeforeAcceptance() public {
@@ -636,7 +636,7 @@ contract ZillaEscrowTokenSafetyTest is Base {
         vm.prank(provider);
         uint256 id = escrow.createAgreement(_input(IERC20(address(fee))));
         vm.prank(client);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
         vm.prank(client);
         vm.expectRevert(ZillaEscrow.UnsupportedToken.selector);
         escrow.fundMilestone(id, 0);

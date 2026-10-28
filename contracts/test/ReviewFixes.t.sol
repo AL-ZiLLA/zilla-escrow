@@ -231,7 +231,7 @@ contract ReviewFixesTest is Base {
         vm.prank(provider);
         uint256 id = escrow.createAgreement(input);
         vm.prank(client);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
         uint32 NEW = escrow.NEW_MILESTONE();
         vm.prank(provider);
         vm.expectRevert(ZillaEscrow.TooManyMilestones.selector);
@@ -244,5 +244,119 @@ contract ReviewFixesTest is Base {
         vm.prank(provider);
         vm.expectRevert(ZillaEscrow.InvalidAmount.selector);
         escrow.proposeChangeOrder(id, _co(0, type(uint128).max, due));
+    }
+
+    // ------------------------------------------------------------------ regrade R3 / R6
+
+    /// R3: a day-1 dispute no longer blocks delivery. Proof can be posted while Disputed and the
+    /// milestone stays with the arbiter; the timeout then splits instead of refunding in full.
+    function test_R3_proofCanBePostedDuringDispute() public {
+        uint256 id = _active();
+        _fund(id, 1);
+        vm.prank(client);
+        escrow.openDispute(id, 1);
+
+        vm.expectEmit(true, true, true, true);
+        emit ZillaEscrow.ProofSubmitted(id, 1, agent, PROOF, "ipfs://proof");
+        _submit(id, 1);
+        ZillaEscrow.Milestone memory m = escrow.getMilestone(id, 1);
+        assertEq(uint8(m.status), uint8(ZillaEscrow.MilestoneStatus.Disputed));
+        assertEq(m.proofHash, PROOF);
+        assertEq(m.submittedAt, block.timestamp);
+
+        // The dispute stays open: no review-period claim, and the client cannot release around it.
+        vm.warp(block.timestamp + escrow.REVIEW_PERIOD() + 1);
+        vm.prank(provider);
+        vm.expectRevert(ZillaEscrow.WrongMilestoneStatus.selector);
+        escrow.claimAfterReview(id, 1);
+
+        vm.warp(uint256(escrow.disputedAt(id, 1)) + escrow.ARBITER_TIMEOUT());
+        uint256 p0 = usd.balanceOf(provider);
+        uint256 c0 = usd.balanceOf(client);
+        vm.prank(provider);
+        escrow.resolveDisputeAfterTimeout(id, 1);
+        assertEq(usd.balanceOf(provider) - p0, M1 / 2);
+        assertEq(usd.balanceOf(client) - c0, M1 - M1 / 2);
+    }
+
+    /// R3: with no proof, the timeout refund waits for due date + REFUND_GRACE as well, so an
+    /// early dispute cannot claw back work that is not due yet.
+    function test_R3_noProofRefundWaitsForDueDatePlusGrace() public {
+        uint256 id = _active();
+        _fund(id, 1); // due at +42 days, so refundable after +49 days
+        vm.prank(client);
+        escrow.openDispute(id, 1);
+        uint256 dueGrace = uint256(escrow.getMilestone(id, 1).dueDate) + escrow.REFUND_GRACE();
+
+        vm.warp(uint256(escrow.disputedAt(id, 1)) + escrow.ARBITER_TIMEOUT());
+        assertLt(block.timestamp, dueGrace);
+        vm.prank(client);
+        vm.expectRevert(ZillaEscrow.TooEarly.selector);
+        escrow.resolveDisputeAfterTimeout(id, 1);
+
+        vm.warp(dueGrace);
+        vm.prank(client);
+        vm.expectRevert(ZillaEscrow.TooEarly.selector);
+        escrow.resolveDisputeAfterTimeout(id, 1);
+
+        vm.warp(dueGrace + 1);
+        uint256 c0 = usd.balanceOf(client);
+        vm.prank(client);
+        escrow.resolveDisputeAfterTimeout(id, 1);
+        assertEq(usd.balanceOf(client) - c0, M1);
+        assertEq(escrow.escrowed(IERC20(address(usd))), 0);
+    }
+
+    /// R3: proof during a dispute keeps the usual guards.
+    function test_R3_proofDuringDispute_guards() public {
+        uint256 id = _active();
+        _fund(id, 0);
+        vm.prank(client);
+        escrow.openDispute(id, 0);
+        vm.prank(stranger);
+        vm.expectRevert(ZillaEscrow.NotAuthorized.selector);
+        escrow.submitProof(id, 0, PROOF, "");
+        vm.prank(provider);
+        vm.expectRevert(ZillaEscrow.InvalidHash.selector);
+        escrow.submitProof(id, 0, bytes32(0), "");
+        vm.prank(arbiter);
+        escrow.resolveDispute(id, 0, 0);
+        vm.prank(provider);
+        vm.expectRevert(ZillaEscrow.WrongMilestoneStatus.selector);
+        escrow.submitProof(id, 0, PROOF, "");
+    }
+
+    /// R6: the agent is bound into acceptance. A provider swap right before the client accepts
+    /// makes the client's acceptance revert instead of silently binding an unseen agent.
+    function test_R6_agentSwapBeforeAcceptanceIsRejected() public {
+        vm.prank(provider);
+        uint256 id = escrow.createAgreement(_input(IERC20(address(usd))));
+        address swapped = makeAddr("swapped");
+        vm.prank(provider);
+        escrow.setAgent(id, swapped, 0);
+
+        vm.prank(client);
+        vm.expectRevert(ZillaEscrow.AgentMismatch.selector);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
+        assertEq(uint8(escrow.getAgreement(id).status), uint8(ZillaEscrow.AgreementStatus.Proposed));
+
+        // The client can still accept knowingly, naming the agent it saw.
+        vm.prank(client);
+        escrow.acceptAgreement(id, SCOPE_V1, swapped);
+        assertEq(escrow.getAgreement(id).agent, swapped);
+    }
+
+    /// R6: an agreement without an agent is accepted with address(0), and naming one fails.
+    function test_R6_noAgentAcceptsWithZeroAddress() public {
+        ZillaEscrow.AgreementInput memory input = _input(IERC20(address(usd)));
+        input.agent = address(0);
+        vm.prank(provider);
+        uint256 id = escrow.createAgreement(input);
+        vm.prank(client);
+        vm.expectRevert(ZillaEscrow.AgentMismatch.selector);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
+        vm.prank(client);
+        escrow.acceptAgreement(id, SCOPE_V1, address(0));
+        assertEq(uint8(escrow.getAgreement(id).status), uint8(ZillaEscrow.AgreementStatus.Active));
     }
 }
