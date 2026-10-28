@@ -98,7 +98,7 @@ forge verify-contract 0x11aa41c1d312931852dad937718635f7949a4a82 src/mocks/MockS
   - Browser-style (attempt cookie kept): tries 1 to 4 answer "wrong" after 0.5, 1, 2 and 4 s; try 5 and later answer "limit, wait 15 minutes"; the correct password is then refused with no gate cookie.
   - Script-style (no cookie, sequential): 3 of 6 refused as "limit". Requests landed on more than one function instance, so only some were counted together.
   - Parallel burst of 10 with no cookie: all 10 answered "wrong", none unlocked. This is the honest limit of a per-instance store: a script that drops cookies and spreads requests is slowed, not stopped.
-- Not fixed in code (needs Al, a Vercel change): three pre-gate preview deployments (80ca363, 3138a2c, c5acfa7) are public without the gate because Vercel Authentication is off for the project. Delete them or restore protection with an exception for the branch alias.
+- Resolved outside code (Al, Vercel dashboard, 2026-10-28 12:13 PM MT): the seven old public preview deployments were deleted: pre-gate 80ca363, 3138a2c, c5acfa7 (public without the gate because Vercel Authentication is off for the project) and old-gate nw3v13lpi, fklpww45s, j0kaiyugl, qohq4fov3 (gate without the redirect and lockout fixes), that is everything older than kak10a7dk. Rechecked: all seven hosts return 404 DEPLOYMENT_NOT_FOUND; the branch alias and kak10a7dk return 307 to `/unlock`. No project settings changed.
 - Verified on the deployed alias: unauthenticated `/`, `/fund`, `/recorded`, `/activity` redirect to `/unlock`; a wrong password is rejected with no cookie; the right password lands on `/fund`; Chrome reports the app installable at 390px with no manifest errors; offline relaunch shows the cached shell.
 - Install: iPhone, open the link in Safari, Share, Add to Home Screen. Android or desktop Chrome, use the install icon in the address bar or menu, Install app.
 
@@ -108,7 +108,7 @@ landing-review-fixes-1280, client-fund-done-1280, client-release-dialog-1280, pr
 
 ## Self-grade against the 9.2 bar
 
-**GroKy regrade 2: code 9.4 and design 9.3, both PASS.** The password gate scored 7.8 before 4597f9d (open redirect closed) and ff6d847 (best-effort lockout). It reaches the bar only once Al removes the three public pre-gate preview deployments. Still missing: the 90-second video.
+**GroKy regrade 2: code 9.4 and design 9.3, both PASS.** The password gate scored 7.8 before 4597f9d (open redirect closed) and ff6d847 (best-effort lockout). GroKy regrade 3 scored the gate 9.3 PASS; the seven old public preview deployments it depended on were removed on 2026-10-28. Still missing: the 90-second video.
 
 ## How to rerun
 
