@@ -179,7 +179,7 @@ async function main() {
     "accept",
     "Client signs: scope hash matches, baseline frozen",
     "client",
-    await c.writeContract({ address: escrow, abi: escrowAbi, functionName: "acceptAgreement", args: [id, v1] }),
+    await c.writeContract({ address: escrow, abi: escrowAbi, functionName: "acceptAgreement", args: [id, v1, roles.agent.address] }),
   );
   const total = units(scopeV2.phases.reduce((s, x) => s + x.amount, 0));
   await record(

@@ -1,0 +1,147 @@
+{
+  "base": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app",
+  "total": 28,
+  "failed": 0,
+  "results": [
+    {
+      "name": "GET / unauthenticated -> /unlock",
+      "ok": true,
+      "detail": "307 /unlock"
+    },
+    {
+      "name": "GET /fund unauthenticated -> /unlock",
+      "ok": true,
+      "detail": "307 /unlock?next=%2Ffund"
+    },
+    {
+      "name": "GET /recorded unauthenticated -> /unlock",
+      "ok": true,
+      "detail": "307 /unlock?next=%2Frecorded"
+    },
+    {
+      "name": "GET /activity unauthenticated -> /unlock",
+      "ok": true,
+      "detail": "307 /unlock?next=%2Factivity"
+    },
+    {
+      "name": "GET /manifest.webmanifest reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /sw.js reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /icons/icon-192.png reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /icons/icon-512.png reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /icons/maskable-512.png reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /apple-icon.png reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /favicon.ico reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /unlock reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "sw.js served as JavaScript, no-cache",
+      "ok": true,
+      "detail": "application/javascript; charset=utf-8 | no-cache, no-store, must-revalidate"
+    },
+    {
+      "name": "manifest: standalone, start_url /, 192+512 any+maskable",
+      "ok": true,
+      "detail": "{\"display\":\"standalone\",\"start\":\"/\",\"n\":4}"
+    },
+    {
+      "name": "wrong password stays on /unlock with an error",
+      "ok": true,
+      "detail": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/unlock?error=wrong&next=%2Ffund"
+    },
+    {
+      "name": "no gate cookie after a wrong password",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/unlock axe WCAG 2.1 AA at 390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/unlock shows the testnet notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "right password lands on /fund",
+      "ok": true,
+      "detail": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/fund"
+    },
+    {
+      "name": "gate cookie is httpOnly, secure, sameSite=Lax, ~30 days",
+      "ok": true,
+      "detail": "true true Lax 30.00d"
+    },
+    {
+      "name": "gate cookie does not contain the password",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "unlocked browser reaches /recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "head: manifest link, iOS meta, apple-touch-icon, theme colors",
+      "ok": true,
+      "detail": "{\"manifest\":\"/manifest.webmanifest\",\"apple\":\"yes\",\"status\":\"black\",\"touch\":\"/apple-icon.png?apple-icon.2w9iyj65rfg_z.png\",\"theme\":[\"#0a0a0a\",\"#f5f3ee\"]}"
+    },
+    {
+      "name": "service worker active",
+      "ok": true,
+      "detail": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/sw.js"
+    },
+    {
+      "name": "Chrome manifest parse: no errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "Chrome installability at 390: no errors (installable)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "offline launch renders the app shell",
+      "ok": true,
+      "detail": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "cache holds only same-origin shell/static entries",
+      "ok": true,
+      "detail": "30 entries"
+    }
+  ]
+}

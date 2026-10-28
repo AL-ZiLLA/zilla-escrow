@@ -17,10 +17,10 @@ A provider turns a signed scope into an on-chain agreement. The client funds eac
 
 ## How the contract works
 
-- **Agreement.** `createAgreement` stores the client, provider, delivery agent, token, phases and a `scopeHash` (keccak256 of the canonical scope JSON). `acceptAgreement` has the client confirm that exact hash, which freezes it as `baselineHash`.
+- **Agreement.** `createAgreement` stores the client, provider, delivery agent, token, phases and a `scopeHash` (keccak256 of the canonical scope JSON). `acceptAgreement` has the client confirm that exact hash and the delivery agent it saw (so an agent swapped in before acceptance makes the acceptance revert), and freezes the hash as `baselineHash`.
 - **Phases.** `fundMilestone` pulls the phase payment into escrow. The agent or provider calls `submitProof` with a proof hash and URI. The client calls `release`.
 - **Change orders.** `proposeChangeOrder` prices a change against the current scope version (top up a phase or add one, move a due date, new scope hash). `approveChangeOrder` applies it and bumps the version. Stale change orders cannot be approved.
-- **Safety valves.** `claimAfterReview` pays the provider if the client goes silent after proof. `refundExpired` returns a funded phase after its due date if no proof arrived. `openDispute` freezes a phase and a named arbiter splits it with `resolveDispute`.
+- **Safety valves.** `claimAfterReview` pays the provider if the client goes silent after proof. `refundExpired` returns a funded phase after its due date if no proof arrived. `openDispute` freezes a phase and a named arbiter splits it with `resolveDispute`. Proof can still be posted while a phase is disputed. If the arbiter is silent for 30 days, either party can settle: delivered work splits evenly, and undelivered work refunds the client only once the phase is also 7 days past its due date. Known edge case: the contract checks only that a proof hash exists, not its quality, so with an absent arbiter a provider can post junk proof during a dispute and turn a full refund into the 50/50 split. That is the same power the client has to dispute, and judging proof is the arbiter's job, so name an active arbiter.
 - **No admin.** No owner, pause or upgrade path. State-changing calls are non-reentrant, and fee-on-transfer tokens are rejected so held funds always equal the token balance.
 
 ## Run it
@@ -60,11 +60,13 @@ The deploy script refuses any chain other than Arbitrum Sepolia (421614) or a lo
 
 ## Status
 
-- Contracts and tests: 47 Foundry tests pass.
-- Testnet deployment: recorded on Arbitrum Sepolia (chain 421614). The demo app replays that run, and every transaction and contract links to Arbiscan.
-  - ZillaEscrow: [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421)
-  - Mock test token (no value): [`0x60ea8357ce1747bf13eccb86d026163a246429a1`](https://sepolia.arbiscan.io/address/0x60ea8357ce1747bf13eccb86d026163a246429a1)
-- Contract source is not yet verified on Arbiscan.
+- Contracts and tests: 67 Foundry tests pass, 100% line, statement, branch and function coverage on `ZillaEscrow.sol`.
+- Testnet deployment (v3): recorded on Arbitrum Sepolia (chain 421614) on 2026-10-28, after the second review round (proof can be posted during a dispute, the no-proof timeout refund waits for due date plus grace, and the delivery agent is bound into acceptance). The demo app replays that run, and every transaction and contract links to Arbiscan. Source verified on Arbiscan.
+  - ZillaEscrow: [`0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed`](https://sepolia.arbiscan.io/address/0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed#code)
+  - Mock test token (no value): [`0x11aa41c1d312931852dad937718635f7949a4a82`](https://sepolia.arbiscan.io/address/0x11aa41c1d312931852dad937718635f7949a4a82#code)
+- Prior versions (superseded, kept for the record):
+  - v2, after the first review fixes: ZillaEscrow [`0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2`](https://sepolia.arbiscan.io/address/0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2#code) (verified), recorded in `web/src/data/run-v2.json`.
+  - v1, before the review fixes: ZillaEscrow [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421), recorded in `web/src/data/run-v1.json`.
 - Not audited. Legal review before mainnet.
 
 Internal planning index: Zilla brain, tag `zilla-escrow` (latest index note).

@@ -10,7 +10,8 @@
     "abi": "node scripts/export-abi.mjs",
     "demo:run": "tsx scripts/run-demo.ts",
     "demo:docs": "tsx scripts/write-docs.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "next": "16.4.3",
@@ -29,5 +30,8 @@
     "tsx": "^4.23.15",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.34.6"
+  "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": "22.x"
+  }
 }

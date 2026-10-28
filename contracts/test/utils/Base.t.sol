@@ -57,7 +57,7 @@ abstract contract Base is Test {
         vm.prank(provider);
         id = escrow.createAgreement(_input(IERC20(address(usd))));
         vm.prank(client);
-        escrow.acceptAgreement(id, SCOPE_V1);
+        escrow.acceptAgreement(id, SCOPE_V1, agent);
     }
 
     function _fund(uint256 id, uint256 i) internal {

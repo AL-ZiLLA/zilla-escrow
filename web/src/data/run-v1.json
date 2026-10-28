@@ -1,0 +1,424 @@
+{
+  "generatedAt": "2026-10-28T02:29:33.995Z",
+  "network": {
+    "key": "arbitrum-sepolia",
+    "name": "Arbitrum Sepolia",
+    "chainId": 421614,
+    "explorer": "https://sepolia.arbiscan.io"
+  },
+  "contracts": {
+    "escrow": "0x9e851ebb3ebc62e22f3294da072ab966c3390421",
+    "token": "0x60ea8357ce1747bf13eccb86d026163a246429a1",
+    "deployBlock": 323537655
+  },
+  "roles": {
+    "deployer": "0x728255BAD68Eaf6026d7e7E4BE945882903e20Dc",
+    "client": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+    "provider": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+    "agent": "0x6b38A89e5B3fCF7B474B27291FC31deF4F1B696c",
+    "arbiter": "0xe7a6F19Ee23911860cB828a2206ef598d2AeEe0c"
+  },
+  "agreementId": "1",
+  "hashes": {
+    "scopeV1": "0x134cdf5cea9f64b31aeebf864ab9adc86ad246f6ccd6ae76866d2f26d01f4414",
+    "scopeV2": "0x3bfa05a5bb1788a77174b65d187eb51282c22bf239683c20691f3407f25d794f",
+    "proofP1": "0x23f2f1957d32202f839938a5c5f2c0df977ecbba74472bbb72b6b982c7bb2253",
+    "proofP2": "0xf7458e972eb14731ecdff5714f187f71b9fdc16af8ac47b09b8fb7dd040578f0"
+  },
+  "steps": [
+    {
+      "key": "deploy-MockStablecoin",
+      "title": "Deploy mock test token (no value)",
+      "role": "deployer",
+      "txHash": "0x1f8ff835a947f9061e16a9c97177535de297446345d9cea5145248b62d451399",
+      "block": 323537655,
+      "timestamp": 1793154556,
+      "gasUsed": "526051",
+      "events": []
+    },
+    {
+      "key": "deploy-ZillaEscrow",
+      "title": "Deploy ZillaEscrow",
+      "role": "deployer",
+      "txHash": "0x1aa12877dfe8b7e4ba87d8d8967e96329ec7ed939f667b358eb180d91177953a",
+      "block": 323537663,
+      "timestamp": 1793154558,
+      "gasUsed": "3187727",
+      "events": []
+    },
+    {
+      "key": "create",
+      "title": "Provider creates the agreement from the scope",
+      "role": "provider",
+      "txHash": "0x57b017f3f5ed097cea2217e86f3589dad823170b8db01e626752ceecfbbebdd4",
+      "block": 323537668,
+      "timestamp": 1793154559,
+      "gasUsed": "449032",
+      "events": [
+        {
+          "name": "AgreementCreated",
+          "args": {
+            "agreementId": "1",
+            "client": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "provider": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+            "creator": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+            "arbiter": "0xe7a6F19Ee23911860cB828a2206ef598d2AeEe0c",
+            "token": "0x60ea8357ce1747bF13eccB86d026163a246429A1",
+            "scopeHash": "0x134cdf5cea9f64b31aeebf864ab9adc86ad246f6ccd6ae76866d2f26d01f4414",
+            "scopeURI": "/demo/scope-v1.json"
+          }
+        },
+        {
+          "name": "MilestoneAdded",
+          "args": {
+            "agreementId": "1",
+            "index": "0",
+            "amount": "2400000000",
+            "dueDate": "1794364158",
+            "phaseRef": "0x5031000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        {
+          "name": "MilestoneAdded",
+          "args": {
+            "agreementId": "1",
+            "index": "1",
+            "amount": "4800000000",
+            "dueDate": "1796178558",
+            "phaseRef": "0x5032000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        {
+          "name": "MilestoneAdded",
+          "args": {
+            "agreementId": "1",
+            "index": "2",
+            "amount": "3600000000",
+            "dueDate": "1797992958",
+            "phaseRef": "0x5033000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        {
+          "name": "AgentSet",
+          "args": {
+            "agreementId": "1",
+            "agent": "0x6b38A89e5B3fCF7B474B27291FC31deF4F1B696c",
+            "agentIdentityId": "0"
+          }
+        }
+      ]
+    },
+    {
+      "key": "accept",
+      "title": "Client signs: scope hash matches, baseline frozen",
+      "role": "client",
+      "txHash": "0x30421e5aa0508fa8a9a14318583183c92a52b72287201d07c0350cebaaadb6b9",
+      "block": 323537673,
+      "timestamp": 1793154560,
+      "gasUsed": "78129",
+      "events": [
+        {
+          "name": "AgreementAccepted",
+          "args": {
+            "agreementId": "1",
+            "by": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "baselineHash": "0x134cdf5cea9f64b31aeebf864ab9adc86ad246f6ccd6ae76866d2f26d01f4414"
+          }
+        }
+      ]
+    },
+    {
+      "key": "mint",
+      "title": "Client takes mock test tokens from the faucet",
+      "role": "client",
+      "txHash": "0x5a2ae3dad36b443c663b46c4f08f664c35727b0a0ed2f5569d22ede20216a775",
+      "block": 323537681,
+      "timestamp": 1793154562,
+      "gasUsed": "68418",
+      "events": [
+        {
+          "name": "Transfer",
+          "args": {
+            "from": "0x0000000000000000000000000000000000000000",
+            "to": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "value": "11700000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "approve",
+      "title": "Client allows the escrow to pull deposits",
+      "role": "client",
+      "txHash": "0x26c747a5a621934172b3710128391c8b364837aa99f56c5e1d50c6a9b74e31c0",
+      "block": 323537689,
+      "timestamp": 1793154564,
+      "gasUsed": "46343",
+      "events": [
+        {
+          "name": "Approval",
+          "args": {
+            "owner": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "spender": "0x9E851eBb3EBc62e22F3294da072AB966c3390421",
+            "value": "11700000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "fund-p1",
+      "title": "Client funds P1",
+      "role": "client",
+      "txHash": "0x52d09c5dc9e54cb715034258adefb5198924e0f45a59c21309325b4cd34d6359",
+      "block": 323537692,
+      "timestamp": 1793154565,
+      "gasUsed": "107348",
+      "events": [
+        {
+          "name": "Transfer",
+          "args": {
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "to": "0x9E851eBb3EBc62e22F3294da072AB966c3390421",
+            "value": "2400000000"
+          }
+        },
+        {
+          "name": "MilestoneFunded",
+          "args": {
+            "agreementId": "1",
+            "index": "0",
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "amount": "2400000000",
+            "fundedTotal": "2400000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "proof-p1",
+      "title": "Agent posts the P1 proof pack",
+      "role": "agent",
+      "txHash": "0xdab22c4fce0f32dee9a3ddcdeae331811719006c2f8d7d23ae10e364ce609e62",
+      "block": 323537697,
+      "timestamp": 1793154566,
+      "gasUsed": "85675",
+      "events": [
+        {
+          "name": "ProofSubmitted",
+          "args": {
+            "agreementId": "1",
+            "index": "0",
+            "by": "0x6b38A89e5B3fCF7B474B27291FC31deF4F1B696c",
+            "proofHash": "0x23f2f1957d32202f839938a5c5f2c0df977ecbba74472bbb72b6b982c7bb2253",
+            "proofURI": "/demo/proof-p1.json"
+          }
+        }
+      ]
+    },
+    {
+      "key": "release-p1",
+      "title": "Client releases P1 in one click",
+      "role": "client",
+      "txHash": "0x2915d07d8d4bee1ecfff67956d47fddf832efad6a22c8a39faa0e3f88849e87f",
+      "block": 323537700,
+      "timestamp": 1793154567,
+      "gasUsed": "74450",
+      "events": [
+        {
+          "name": "Transfer",
+          "args": {
+            "from": "0x9E851eBb3EBc62e22F3294da072AB966c3390421",
+            "to": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+            "value": "2400000000"
+          }
+        },
+        {
+          "name": "MilestoneReleased",
+          "args": {
+            "agreementId": "1",
+            "index": "0",
+            "by": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "amount": "2400000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "fund-p2",
+      "title": "Client funds P2",
+      "role": "client",
+      "txHash": "0xdf48d5ad0ff65479c6330dd246ea208f6dbc9c0dacebf6d48207a5c19258788a",
+      "block": 323537704,
+      "timestamp": 1793154568,
+      "gasUsed": "107360",
+      "events": [
+        {
+          "name": "Transfer",
+          "args": {
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "to": "0x9E851eBb3EBc62e22F3294da072AB966c3390421",
+            "value": "4800000000"
+          }
+        },
+        {
+          "name": "MilestoneFunded",
+          "args": {
+            "agreementId": "1",
+            "index": "1",
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "amount": "4800000000",
+            "fundedTotal": "4800000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "co-propose",
+      "title": "Provider proposes CR-1: Add gift card checkout",
+      "role": "provider",
+      "txHash": "0x791d3009287a3080b49ba5f91eefb80ecb5eb97d2b16bfcfbcdfff591cb27745",
+      "block": 323537709,
+      "timestamp": 1793154569,
+      "gasUsed": "158472",
+      "events": [
+        {
+          "name": "ChangeOrderProposed",
+          "args": {
+            "agreementId": "1",
+            "changeOrderId": "0",
+            "proposer": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+            "target": 1,
+            "costDelta": "900000000",
+            "newDueDate": "1796783358",
+            "newScopeHash": "0x3bfa05a5bb1788a77174b65d187eb51282c22bf239683c20691f3407f25d794f",
+            "reasonURI": "/demo/scope-v2.json"
+          }
+        }
+      ]
+    },
+    {
+      "key": "co-approve",
+      "title": "Client approves CR-1: scope v2, date extended",
+      "role": "client",
+      "txHash": "0xa08ee41c3007919e25e2ed29e3b03f377be61029ac09c4b9832319f66c674928",
+      "block": 323537712,
+      "timestamp": 1793154570,
+      "gasUsed": "62821",
+      "events": [
+        {
+          "name": "ChangeOrderApproved",
+          "args": {
+            "agreementId": "1",
+            "changeOrderId": "0",
+            "approver": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "milestoneIndex": 1,
+            "previousDueDate": "1796178558",
+            "newDueDate": "1796783358",
+            "newVersion": 2
+          }
+        }
+      ]
+    },
+    {
+      "key": "fund-co",
+      "title": "Client tops up P2 for CR-1",
+      "role": "client",
+      "txHash": "0x7f22f79fffd3cf352c274f7459ea7c8c279fdfff486294f4e84e70c57092ded8",
+      "block": 323537717,
+      "timestamp": 1793154571,
+      "gasUsed": "70158",
+      "events": [
+        {
+          "name": "Transfer",
+          "args": {
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "to": "0x9E851eBb3EBc62e22F3294da072AB966c3390421",
+            "value": "900000000"
+          }
+        },
+        {
+          "name": "MilestoneFunded",
+          "args": {
+            "agreementId": "1",
+            "index": "1",
+            "from": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+            "amount": "900000000",
+            "fundedTotal": "5700000000"
+          }
+        }
+      ]
+    },
+    {
+      "key": "proof-p2",
+      "title": "Agent posts the P2 proof pack",
+      "role": "agent",
+      "txHash": "0x6bf6bc5a810395f0c5570c8bae0d79d994ef4f44b9c0d0a07157435b177f32dd",
+      "block": 323537720,
+      "timestamp": 1793154572,
+      "gasUsed": "85687",
+      "events": [
+        {
+          "name": "ProofSubmitted",
+          "args": {
+            "agreementId": "1",
+            "index": "1",
+            "by": "0x6b38A89e5B3fCF7B474B27291FC31deF4F1B696c",
+            "proofHash": "0xf7458e972eb14731ecdff5714f187f71b9fdc16af8ac47b09b8fb7dd040578f0",
+            "proofURI": "/demo/proof-p2.json"
+          }
+        }
+      ]
+    }
+  ],
+  "final": {
+    "agreement": {
+      "client": "0xaa5055e013C5E9a66d61155F305cc0b5Db9c77fE",
+      "provider": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+      "agent": "0x6b38A89e5B3fCF7B474B27291FC31deF4F1B696c",
+      "arbiter": "0xe7a6F19Ee23911860cB828a2206ef598d2AeEe0c",
+      "token": "0x60ea8357ce1747bF13eccB86d026163a246429A1",
+      "creator": "0x6f35D440c705b810600b056F10Ad3D9846dc9dc5",
+      "status": 2,
+      "version": 2,
+      "milestoneCount": 3,
+      "changeOrderCount": 1,
+      "acceptedAt": "1793154560",
+      "baselineHash": "0x134cdf5cea9f64b31aeebf864ab9adc86ad246f6ccd6ae76866d2f26d01f4414",
+      "scopeHash": "0x3bfa05a5bb1788a77174b65d187eb51282c22bf239683c20691f3407f25d794f",
+      "scopeURI": "/demo/scope-v1.json"
+    },
+    "milestones": [
+      {
+        "amount": "2400000000",
+        "funded": "0",
+        "dueDate": "1794364158",
+        "submittedAt": "1793154566",
+        "status": 3,
+        "phaseRef": "0x5031000000000000000000000000000000000000000000000000000000000000",
+        "proofHash": "0x23f2f1957d32202f839938a5c5f2c0df977ecbba74472bbb72b6b982c7bb2253",
+        "proofURI": "/demo/proof-p1.json"
+      },
+      {
+        "amount": "5700000000",
+        "funded": "5700000000",
+        "dueDate": "1796783358",
+        "submittedAt": "1793154572",
+        "status": 2,
+        "phaseRef": "0x5032000000000000000000000000000000000000000000000000000000000000",
+        "proofHash": "0xf7458e972eb14731ecdff5714f187f71b9fdc16af8ac47b09b8fb7dd040578f0",
+        "proofURI": "/demo/proof-p2.json"
+      },
+      {
+        "amount": "3600000000",
+        "funded": "0",
+        "dueDate": "1797992958",
+        "submittedAt": "0",
+        "status": 0,
+        "phaseRef": "0x5033000000000000000000000000000000000000000000000000000000000000",
+        "proofHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "proofURI": ""
+      }
+    ],
+    "escrowed": "5700000000"
+  }
+}

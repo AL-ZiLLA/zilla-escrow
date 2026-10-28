@@ -1,0 +1,444 @@
+{
+  "total": 93,
+  "failed": 0,
+  "results": [
+    {
+      "check": "chainId 421614",
+      "ok": true
+    },
+    {
+      "check": "escrow has code",
+      "ok": true,
+      "detail": "15851 bytes"
+    },
+    {
+      "check": "token has code",
+      "ok": true,
+      "detail": "1944 bytes"
+    },
+    {
+      "check": "deploy-MockStablecoin: status success",
+      "ok": true
+    },
+    {
+      "check": "deploy-MockStablecoin: block 323738269",
+      "ok": true,
+      "detail": "323738269"
+    },
+    {
+      "check": "deploy-MockStablecoin: created 0x11aa41C1D312931852DAD937718635f7949A4A82",
+      "ok": true,
+      "detail": "0x11aa41c1d312931852dad937718635f7949a4a82"
+    },
+    {
+      "check": "deploy-ZillaEscrow: status success",
+      "ok": true
+    },
+    {
+      "check": "deploy-ZillaEscrow: block 323738275",
+      "ok": true,
+      "detail": "323738275"
+    },
+    {
+      "check": "deploy-ZillaEscrow: created 0x0f5D52BbaBF08Ee90DD349E11FcbC3CAe6FB3EeD",
+      "ok": true,
+      "detail": "0x0f5d52bbabf08ee90dd349e11fcbc3cae6fb3eed"
+    },
+    {
+      "check": "create: status success",
+      "ok": true
+    },
+    {
+      "check": "create: block 323738281",
+      "ok": true,
+      "detail": "323738281"
+    },
+    {
+      "check": "create: event names",
+      "ok": true,
+      "detail": "AgreementCreated,MilestoneAdded,MilestoneAdded,MilestoneAdded,AgentSet"
+    },
+    {
+      "check": "create: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "create: sender is provider",
+      "ok": true
+    },
+    {
+      "check": "accept: status success",
+      "ok": true
+    },
+    {
+      "check": "accept: block 323738287",
+      "ok": true,
+      "detail": "323738287"
+    },
+    {
+      "check": "accept: event names",
+      "ok": true,
+      "detail": "AgreementAccepted"
+    },
+    {
+      "check": "accept: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "accept: sender is client",
+      "ok": true
+    },
+    {
+      "check": "mint: status success",
+      "ok": true
+    },
+    {
+      "check": "mint: block 323738293",
+      "ok": true,
+      "detail": "323738293"
+    },
+    {
+      "check": "mint: event names",
+      "ok": true,
+      "detail": "Transfer"
+    },
+    {
+      "check": "mint: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "mint: sender is client",
+      "ok": true
+    },
+    {
+      "check": "approve: status success",
+      "ok": true
+    },
+    {
+      "check": "approve: block 323738298",
+      "ok": true,
+      "detail": "323738298"
+    },
+    {
+      "check": "approve: event names",
+      "ok": true,
+      "detail": "Approval"
+    },
+    {
+      "check": "approve: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "approve: sender is client",
+      "ok": true
+    },
+    {
+      "check": "fund-p1: status success",
+      "ok": true
+    },
+    {
+      "check": "fund-p1: block 323738303",
+      "ok": true,
+      "detail": "323738303"
+    },
+    {
+      "check": "fund-p1: event names",
+      "ok": true,
+      "detail": "Transfer,MilestoneFunded"
+    },
+    {
+      "check": "fund-p1: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "fund-p1: sender is client",
+      "ok": true
+    },
+    {
+      "check": "proof-p1: status success",
+      "ok": true
+    },
+    {
+      "check": "proof-p1: block 323738309",
+      "ok": true,
+      "detail": "323738309"
+    },
+    {
+      "check": "proof-p1: event names",
+      "ok": true,
+      "detail": "ProofSubmitted"
+    },
+    {
+      "check": "proof-p1: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "proof-p1: sender is agent",
+      "ok": true
+    },
+    {
+      "check": "release-p1: status success",
+      "ok": true
+    },
+    {
+      "check": "release-p1: block 323738315",
+      "ok": true,
+      "detail": "323738315"
+    },
+    {
+      "check": "release-p1: event names",
+      "ok": true,
+      "detail": "Transfer,MilestoneReleased"
+    },
+    {
+      "check": "release-p1: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "release-p1: sender is client",
+      "ok": true
+    },
+    {
+      "check": "fund-p2: status success",
+      "ok": true
+    },
+    {
+      "check": "fund-p2: block 323738319",
+      "ok": true,
+      "detail": "323738319"
+    },
+    {
+      "check": "fund-p2: event names",
+      "ok": true,
+      "detail": "Transfer,MilestoneFunded"
+    },
+    {
+      "check": "fund-p2: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "fund-p2: sender is client",
+      "ok": true
+    },
+    {
+      "check": "co-propose: status success",
+      "ok": true
+    },
+    {
+      "check": "co-propose: block 323738325",
+      "ok": true,
+      "detail": "323738325"
+    },
+    {
+      "check": "co-propose: event names",
+      "ok": true,
+      "detail": "ChangeOrderProposed"
+    },
+    {
+      "check": "co-propose: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "co-propose: sender is provider",
+      "ok": true
+    },
+    {
+      "check": "co-approve: status success",
+      "ok": true
+    },
+    {
+      "check": "co-approve: block 323738330",
+      "ok": true,
+      "detail": "323738330"
+    },
+    {
+      "check": "co-approve: event names",
+      "ok": true,
+      "detail": "ChangeOrderApproved"
+    },
+    {
+      "check": "co-approve: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "co-approve: sender is client",
+      "ok": true
+    },
+    {
+      "check": "fund-co: status success",
+      "ok": true
+    },
+    {
+      "check": "fund-co: block 323738335",
+      "ok": true,
+      "detail": "323738335"
+    },
+    {
+      "check": "fund-co: event names",
+      "ok": true,
+      "detail": "Transfer,MilestoneFunded"
+    },
+    {
+      "check": "fund-co: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "fund-co: sender is client",
+      "ok": true
+    },
+    {
+      "check": "proof-p2: status success",
+      "ok": true
+    },
+    {
+      "check": "proof-p2: block 323738341",
+      "ok": true,
+      "detail": "323738341"
+    },
+    {
+      "check": "proof-p2: event names",
+      "ok": true,
+      "detail": "ProofSubmitted"
+    },
+    {
+      "check": "proof-p2: event args",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "proof-p2: sender is agent",
+      "ok": true
+    },
+    {
+      "check": "final agreement.client",
+      "ok": true,
+      "detail": "0xaa5055e013c5e9a66d61155f305cc0b5db9c77fe"
+    },
+    {
+      "check": "final agreement.provider",
+      "ok": true,
+      "detail": "0x6f35d440c705b810600b056f10ad3d9846dc9dc5"
+    },
+    {
+      "check": "final agreement.agent",
+      "ok": true,
+      "detail": "0x6b38a89e5b3fcf7b474b27291fc31def4f1b696c"
+    },
+    {
+      "check": "final agreement.arbiter",
+      "ok": true,
+      "detail": "0xe7a6f19ee23911860cb828a2206ef598d2aeee0c"
+    },
+    {
+      "check": "final agreement.token",
+      "ok": true,
+      "detail": "0x11aa41c1d312931852dad937718635f7949a4a82"
+    },
+    {
+      "check": "final agreement.status",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "final agreement.version",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "final agreement.milestoneCount",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "final agreement.changeOrderCount",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "check": "final agreement.scopeHash",
+      "ok": true,
+      "detail": "0x3bfa05a5bb1788a77174b65d187eb51282c22bf239683c20691f3407f25d794f"
+    },
+    {
+      "check": "final agreement.baselineHash",
+      "ok": true,
+      "detail": "0x134cdf5cea9f64b31aeebf864ab9adc86ad246f6ccd6ae76866d2f26d01f4414"
+    },
+    {
+      "check": "final milestone[0].amount",
+      "ok": true,
+      "detail": "2400000000"
+    },
+    {
+      "check": "final milestone[0].funded",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "final milestone[0].status",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "check": "final milestone[0].proofHash",
+      "ok": true,
+      "detail": "0x23f2f1957d32202f839938a5c5f2c0df977ecbba74472bbb72b6b982c7bb2253"
+    },
+    {
+      "check": "final milestone[1].amount",
+      "ok": true,
+      "detail": "5700000000"
+    },
+    {
+      "check": "final milestone[1].funded",
+      "ok": true,
+      "detail": "5700000000"
+    },
+    {
+      "check": "final milestone[1].status",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "check": "final milestone[1].proofHash",
+      "ok": true,
+      "detail": "0xf7458e972eb14731ecdff5714f187f71b9fdc16af8ac47b09b8fb7dd040578f0"
+    },
+    {
+      "check": "final milestone[2].amount",
+      "ok": true,
+      "detail": "3600000000"
+    },
+    {
+      "check": "final milestone[2].funded",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "final milestone[2].status",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "final milestone[2].proofHash",
+      "ok": true,
+      "detail": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "check": "escrow token balance = sum of funded",
+      "ok": true,
+      "detail": "5700000000"
+    }
+  ]
+}

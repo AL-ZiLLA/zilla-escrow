@@ -41,7 +41,7 @@ Rules: due dates can only move later. A change order that does nothing is reject
 - MAX_MILESTONES = 64 per agreement.
 
 ## Calls the UI triggers
-createAgreement, acceptAgreement(scopeHash), cancelAgreement, setAgent(agent, agentIdentityId), fundMilestone (needs an ERC-20 approve first: two wallet steps), submitProof(proofHash, proofURI), release, claimAfterReview, refundExpired, refundByProvider, openDispute, resolveDispute(toProvider), proposeChangeOrder, approveChangeOrder, declineChangeOrder, cancelChangeOrder.
+createAgreement, acceptAgreement(scopeHash, expectedAgent), cancelAgreement, setAgent(agent, agentIdentityId), fundMilestone (needs an ERC-20 approve first: two wallet steps), submitProof(proofHash, proofURI), release, claimAfterReview, refundExpired, refundByProvider, openDispute, resolveDispute(toProvider), resolveDisputeAfterTimeout, proposeChangeOrder, approveChangeOrder, declineChangeOrder, cancelChangeOrder.
 Reads: getAgreement, getMilestones, getChangeOrder, `escrowed(token)`.
 
 ## Events (the audit timeline)

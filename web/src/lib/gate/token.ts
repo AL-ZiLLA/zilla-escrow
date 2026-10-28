@@ -1,0 +1,68 @@
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
+
+export const GATE_COOKIE = 'zilla_demo_gate';
+export const GATE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days, in seconds
+
+export type GateConfig = { password: string; secret: string };
+export type GateMode = { mode: 'off' } | { mode: 'on'; config: GateConfig } | { mode: 'misconfigured' };
+
+/**
+ * Off only when DEMO_PASSWORD is unset outside Vercel (local dev and local e2e).
+ * On Vercel a missing password or secret fails closed: every route stays behind /unlock.
+ */
+export function gateMode(env: Record<string, string | undefined> = process.env): GateMode {
+  const password = env.DEMO_PASSWORD ?? '';
+  const secret = env.DEMO_GATE_SECRET ?? '';
+  if (!password) return env.VERCEL ? { mode: 'misconfigured' } : { mode: 'off' };
+  if (secret.length < 32) return { mode: 'misconfigured' };
+  return { mode: 'on', config: { password, secret } };
+}
+
+const sha256 = (v: string) => createHash('sha256').update(v).digest();
+
+function sign(config: GateConfig, exp: number): string {
+  // Binding the password digest means rotating DEMO_PASSWORD invalidates every cookie.
+  return createHmac('sha256', config.secret).update(`v1|${exp}|`).update(sha256(config.password)).digest('base64url');
+}
+
+/** Constant-time string compare: hashes both sides so lengths never leak. */
+export function safeEqual(a: string, b: string): boolean {
+  return timingSafeEqual(sha256(a), sha256(b));
+}
+
+export function checkPassword(config: GateConfig, attempt: string): boolean {
+  return safeEqual(attempt, config.password);
+}
+
+export function issueToken(config: GateConfig, now = Date.now()): string {
+  const exp = Math.floor(now / 1000) + GATE_MAX_AGE;
+  return `${exp}.${sign(config, exp)}`;
+}
+
+export function verifyToken(config: GateConfig, token: string | undefined, now = Date.now()): boolean {
+  if (!token) return false;
+  const dot = token.indexOf('.');
+  if (dot < 1) return false;
+  const exp = Number(token.slice(0, dot));
+  if (!Number.isSafeInteger(exp) || exp * 1000 <= now) return false;
+  return safeEqual(token.slice(dot + 1), sign(config, exp));
+}
+
+/**
+ * Only same-origin relative paths survive, so ?next= can never redirect off the app.
+ * Rules: one leading '/', not '//' or '/\\', no backslash, whitespace or control character
+ * anywhere (URL parsing strips tab/CR/LF, which turned '/\t/evil' into '//evil'), and the
+ * resolved URL must keep this origin. Anything else falls back to '/'.
+ */
+const PROBE_ORIGIN = 'https://gate.invalid';
+export function safeNext(next: string | null | undefined): string {
+  if (typeof next !== 'string' || next.length === 0 || next.length > 1024) return '/';
+  if (next[0] !== '/' || next[1] === '/' || next[1] === '\\') return '/';
+  if (/[\u0000-\u0020\u007f-\u009f\\]/.test(next)) return '/';
+  let url: URL;
+  try { url = new URL(next, PROBE_ORIGIN); } catch { return '/'; }
+  if (url.origin !== PROBE_ORIGIN) return '/';
+  const out = url.pathname + url.search + url.hash;
+  if (!out.startsWith('/') || out.startsWith('//') || out === '/unlock' || out.startsWith('/unlock?') || out.startsWith('/unlock/') || out.startsWith('/unlock#')) return '/';
+  return out;
+}
