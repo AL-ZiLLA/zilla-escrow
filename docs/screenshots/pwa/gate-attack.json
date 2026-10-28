@@ -1,0 +1,171 @@
+{
+  "base": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app",
+  "at": "2026-10-28T17:21:16.716Z",
+  "browser": [
+    {
+      "attempt": 1,
+      "error": "wrong",
+      "wait": null,
+      "ms": 571
+    },
+    {
+      "attempt": 2,
+      "error": "wrong",
+      "wait": null,
+      "ms": 1039
+    },
+    {
+      "attempt": 3,
+      "error": "wrong",
+      "wait": null,
+      "ms": 2040
+    },
+    {
+      "attempt": 4,
+      "error": "wrong",
+      "wait": null,
+      "ms": 4043
+    },
+    {
+      "attempt": 5,
+      "error": "limit",
+      "wait": "15",
+      "ms": 4276
+    },
+    {
+      "attempt": 6,
+      "error": "limit",
+      "wait": "15",
+      "ms": 562
+    }
+  ],
+  "script": [
+    {
+      "attempt": 1,
+      "error": "wrong",
+      "ms": 558
+    },
+    {
+      "attempt": 2,
+      "error": "limit",
+      "ms": 537
+    },
+    {
+      "attempt": 3,
+      "error": "wrong",
+      "ms": 1050
+    },
+    {
+      "attempt": 4,
+      "error": "limit",
+      "ms": 564
+    },
+    {
+      "attempt": 5,
+      "error": "wrong",
+      "ms": 2036
+    },
+    {
+      "attempt": 6,
+      "error": "limit",
+      "ms": 534
+    }
+  ],
+  "burst": {
+    "limit": 0,
+    "wrong": 10,
+    "other": 0
+  },
+  "results": [
+    {
+      "name": "redirect stays on origin for next=\"/\\t/evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/\\n/evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/\\r/evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/ /evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"//evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"///evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/\\\\evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"\\\\\\\\evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"https://evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"javascript:alert(1)\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/..//evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/"
+    },
+    {
+      "name": "redirect stays on origin for next=\"/%09/evil.example\"",
+      "ok": true,
+      "detail": "303 https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app/%09/evil.example"
+    },
+    {
+      "name": "a normal next still works after unlock",
+      "ok": true,
+      "detail": "/fund?x=1"
+    },
+    {
+      "name": "wrong attempts with the cookie are locked out by attempt 5",
+      "ok": true,
+      "detail": "first limit at attempt 5"
+    },
+    {
+      "name": "every attempt after the lockout is refused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "the RIGHT password is refused while locked out, and no gate cookie is set",
+      "ok": true,
+      "detail": "error=limit wait=15"
+    },
+    {
+      "name": "cookie-less sequential attempts are also blocked (memory layer, best-effort)",
+      "ok": true,
+      "detail": "3/6 refused as limit"
+    },
+    {
+      "name": "no attempt in the burst unlocked",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

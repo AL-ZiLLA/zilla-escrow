@@ -93,6 +93,12 @@ forge verify-contract 0x11aa41c1d312931852dad937718635f7949a4a82 src/mocks/MockS
 - Service worker (`/sw.js`) caches the app shell and same-origin static assets only. It never caches RPC, Arbiscan, `/api` or RSC requests, so onchain reads are always live.
 - Every route except `/unlock`, the manifest, the service worker and icons redirects to `/unlock` until the demo password is entered. The cookie is an HMAC token (httpOnly, secure, SameSite=Lax, 30 days) bound to the current password. After unlock, `next` must be a same-origin path (one leading `/`, no `//`, no backslash, whitespace or control characters, no scheme); anything else goes to `/`.
 - Brute-force throttle on `/api/unlock`, **best-effort, not a hard limit**. This Vercel project has no shared durable store, so it combines two layers: (1) an in-memory counter per client IP, which lives in one warm function instance only, so attempts that land on other instances are counted separately; (2) a signed attempt cookie (HMAC with the gate secret, path `/api/unlock`), which a browser cannot reset or forge but a script can drop. After 5 failures in 15 minutes the client is locked out for 15 minutes, doubling on each repeat lockout up to 4 hours; while locked, the password is not checked at all. Each failure waits 0.5 s, 1 s, 2 s, then 4 s before answering. Password compare is constant-time. The real protection is the long random password; a Vercel Firewall rate-limit rule or a KV counter would make this a hard limit (Al's call).
+- Live check on the deployed branch alias (`web/e2e/gate-attack.mjs`, 18/18, results in `docs/screenshots/pwa/gate-attack.json`):
+  - 12 hostile `next` values with the correct password (tab, CR, LF, space, `//`, `///`, `/\`, `\\`, `https:`, `javascript:`, `/..//`) all redirect to `/` on the same origin. A normal `next=/fund?x=1` still works.
+  - Browser-style (attempt cookie kept): tries 1 to 4 answer "wrong" after 0.5, 1, 2 and 4 s; try 5 and later answer "limit, wait 15 minutes"; the correct password is then refused with no gate cookie.
+  - Script-style (no cookie, sequential): 3 of 6 refused as "limit". Requests landed on more than one function instance, so only some were counted together.
+  - Parallel burst of 10 with no cookie: all 10 answered "wrong", none unlocked. This is the honest limit of a per-instance store: a script that drops cookies and spreads requests is slowed, not stopped.
+- Not fixed in code (needs Al, a Vercel change): three pre-gate preview deployments (80ca363, 3138a2c, c5acfa7) are public without the gate because Vercel Authentication is off for the project. Delete them or restore protection with an exception for the branch alias.
 - Verified on the deployed alias: unauthenticated `/`, `/fund`, `/recorded`, `/activity` redirect to `/unlock`; a wrong password is rejected with no cookie; the right password lands on `/fund`; Chrome reports the app installable at 390px with no manifest errors; offline relaunch shows the cached shell.
 - Install: iPhone, open the link in Safari, Share, Add to Home Screen. Android or desktop Chrome, use the install icon in the address bar or menu, Install app.
 
@@ -102,7 +108,7 @@ landing-review-fixes-1280, client-fund-done-1280, client-release-dialog-1280, pr
 
 ## Self-grade against the 9.2 bar
 
-**About 9.3, pending GroKy's regrade.** M4 (verified source) and M5 (public, password-gated demo) are done. The regrade blocker is cleared on the deployed URL (0 axe violations, fresh CSS), and R3/R6 are fixed with regression tests and redeployed as v3. Still missing: the 90-second video.
+**GroKy regrade 2: code 9.4 and design 9.3, both PASS.** The password gate scored 7.8 before 4597f9d (open redirect closed) and ff6d847 (best-effort lockout). It reaches the bar only once Al removes the three public pre-gate preview deployments. Still missing: the 90-second video.
 
 ## How to rerun
 
@@ -111,5 +117,6 @@ cd web && pnpm build && pnpm start -p 3215 -H 127.0.0.1 &
 BASE=http://127.0.0.1:3215 OUT=../docs/screenshots/e2e node e2e/e2e.mjs
 npx tsx e2e/chain-check.mts > ../docs/screenshots/e2e/chain-check.json
 GATE_ENV=<demo env file> BASE=<preview URL> node e2e/axe-deployed.mjs
+GATE_ENV=<demo env file> BASE=<preview URL> node e2e/gate-attack.mjs   # run last: locks your IP out of /api/unlock for 15+ min
 cd ../contracts && forge test && forge coverage --report summary
 ```
