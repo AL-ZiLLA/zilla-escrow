@@ -60,10 +60,11 @@ The deploy script refuses any chain other than Arbitrum Sepolia (421614) or a lo
 
 ## Status
 
-- Contracts and tests: 47 Foundry tests pass.
-- Testnet deployment: recorded on Arbitrum Sepolia (chain 421614). The demo app replays that run, and every transaction and contract links to Arbiscan.
-  - ZillaEscrow: [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421)
-  - Mock test token (no value): [`0x60ea8357ce1747bf13eccb86d026163a246429a1`](https://sepolia.arbiscan.io/address/0x60ea8357ce1747bf13eccb86d026163a246429a1)
+- Contracts and tests: 62 Foundry tests pass, 100% line, statement, branch and function coverage on `ZillaEscrow.sol`.
+- Testnet deployment: recorded on Arbitrum Sepolia (chain 421614) on 2026-10-28, after the review fixes (arbiter timeout, delivered-work protection, agent consent). The demo app replays that run, and every transaction and contract links to Arbiscan.
+  - ZillaEscrow: [`0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2`](https://sepolia.arbiscan.io/address/0xc2fec2d41a795d75286d8e52192a09cd1a3c8dd2)
+  - Mock test token (no value): [`0x34b161d6315c9874cec85d54c0ad7e8baa208eec`](https://sepolia.arbiscan.io/address/0x34b161d6315c9874cec85d54c0ad7e8baa208eec)
+  - Prior version (superseded, before the review fixes): ZillaEscrow [`0x9e851ebb3ebc62e22f3294da072ab966c3390421`](https://sepolia.arbiscan.io/address/0x9e851ebb3ebc62e22f3294da072ab966c3390421), recorded in `web/src/data/run-v1.json`.
 - Contract source is not yet verified on Arbiscan.
 - Not audited. Legal review before mainnet.
 
