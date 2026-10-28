@@ -13,7 +13,7 @@ Branch `ui-v2-integration`, PR #1 (not merged). Testnet only: Arbitrum Sepolia (
 | Every Arbiscan link in the UI points to a recorded address or tx | pass (`recorded-links.json`) |
 | Foundry: 67 tests (unit, review-fix, regrade R3/R6, fuzz, invariant) | 67/67 pass |
 | Coverage of `src/ZillaEscrow.sol` | 100% lines (296/296), statements (428/428), branches (82/82), functions (31/31) |
-| Deployed bytecode vs local `forge build` (`cast code`) | byte-identical for escrow and token (v3) |
+| Deployed bytecode vs local `forge build` (`cast code`) | v3 is byte-identical to the verified source at commit e446c32 (escrow and token). Later commits add natspec comments only: the executable code is identical and only the trailing metadata hash differs (rechecked after the natspec change). |
 | Arbiscan source verification (v3) | escrow and token verified (solc 0.8.24, 200 runs, cancun) |
 | `pnpm typecheck`, `pnpm lint`, `pnpm test` | green |
 | Demo password gate + PWA (`web/e2e/gate-pwa.mjs`) on the deployed branch alias | **27/27** (`docs/screenshots/pwa/gate-pwa-results.json`) |
@@ -48,6 +48,7 @@ Prior versions (superseded, labeled on `/recorded` and in the README):
 | Preview served stale CSS from the Vercel build cache (old `--color-dim`) | `VERCEL_FORCE_NO_BUILD_CACHE=1` on Preview only; build log shows the cache step skipped; deployed axe 0 violations | 79da274 build |
 | R3: a day-1 dispute blocked proof and refunded in full at day 30 if the arbiter was silent | `submitProof` allowed while Disputed (stays Disputed); no-proof timeout refund also waits for due date + 7 days | e446c32 |
 | R6: provider could swap the agent right before the client accepted | `acceptAgreement(id, scopeHash, expectedAgent)` reverts `AgentMismatch` on a swap | e446c32 |
+| Regrade 2 residual: with an absent arbiter, junk proof posted during a dispute turns a no-proof refund into the 50/50 timeout split | Documented, no contract change: the contract checks only that a proof hash exists; judging quality is the arbiter's job. Natspec on `resolveDisputeAfterTimeout`, README contract mechanics | docs |
 | Landing source link pinned to a moving branch | pinned to commit e446c32 | 1217dd6 |
 | Stale "Placeholder. Not deployed yet" fixture note | reworded to point at the recorded run | 1217dd6 |
 

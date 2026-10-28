@@ -516,6 +516,11 @@ contract ZillaEscrow is ReentrancyGuard {
     ///         the client, but only once the milestone is also REFUND_GRACE past its due date, so
     ///         an early dispute cannot claw back work that was not yet due. Emits
     ///         `DisputeResolved` with `arbiter == address(0)`.
+    /// @dev    Known edge case, by design: the contract only checks that a proof hash exists,
+    ///         not that the work is good. With an absent arbiter, a provider can post junk proof
+    ///         during a dispute and turn a full no-proof refund into the 50/50 default. This
+    ///         mirrors the client's power to dispute and is no worse than junk proof posted
+    ///         before a dispute. Judging proof quality is the arbiter's job, so pick an active one.
     function resolveDisputeAfterTimeout(uint256 agreementId, uint256 index) external nonReentrant {
         Agreement storage a = _activeAgreement(agreementId);
         if (msg.sender != a.client && msg.sender != a.provider) revert NotAuthorized();
