@@ -1,0 +1,522 @@
+{
+  "scope": {
+    "_synthetic": "FICTIONAL SAMPLE DATA. No real client, provider, amount or deliverable. Hashes and addresses are fake placeholders; explorer links will 404 until a real Arbitrum Sepolia deploy exists.",
+    "id": "scope_demo_fernwood_saltmarsh",
+    "account_id": "acct_demo_saltmarsh",
+    "account_slug": "saltmarsh-coffee-demo",
+    "title": "Website rebuild and online ordering",
+    "subtitle": "Fictional demo scope for Zilla Escrow",
+    "doc_type": "SOW",
+    "prepared_for": "Saltmarsh Coffee Roasters (fictional)",
+    "prepared_by": "Fernwood Design Studio (fictional)",
+    "issued_on": "2026-11-02",
+    "schedule_anchor_date": "2026-11-04",
+    "computed_project_end": "2027-01-29",
+    "status": "active",
+    "version_no": 2,
+    "confidential": false,
+    "summary_md": "Rebuild the marketing site, add a brand kit, then launch online ordering. Each phase is paid from escrow when its deliverables are approved.",
+    "phases": [
+      {
+        "id": "ph_1",
+        "order": 1,
+        "code": "P1",
+        "title": "Discovery and brand kit",
+        "status": "shipped",
+        "scope_items": [
+          "Two discovery workshops",
+          "Logo refresh",
+          "Color and type kit"
+        ],
+        "deliverables": [
+          {
+            "id": "d_1_1",
+            "label": "Discovery summary (PDF)",
+            "done": true
+          },
+          {
+            "id": "d_1_2",
+            "label": "Brand kit (logo files, colors, type)",
+            "done": true
+          }
+        ],
+        "acceptance_criteria": [
+          "Client signs off on brand kit"
+        ],
+        "dependencies": [],
+        "start_after_all": [],
+        "overlap_tail": [],
+        "notices": [],
+        "milestones": [
+          {
+            "id": "ms_1",
+            "label": "Brand kit approved",
+            "due": "2026-11-20",
+            "done": true
+          }
+        ],
+        "planned_start": "2026-11-04",
+        "planned_end": "2026-11-20"
+      },
+      {
+        "id": "ph_2",
+        "order": 2,
+        "code": "P2",
+        "title": "Site design",
+        "status": "in_progress",
+        "scope_items": [
+          "Homepage, menu, about and contact page designs",
+          "Mobile layouts"
+        ],
+        "deliverables": [
+          {
+            "id": "d_2_1",
+            "label": "Homepage design",
+            "done": true
+          },
+          {
+            "id": "d_2_2",
+            "label": "Inner page designs (3)",
+            "done": true
+          },
+          {
+            "id": "d_2_3",
+            "label": "Mobile layouts",
+            "done": true
+          }
+        ],
+        "acceptance_criteria": [
+          "Designs cover all four pages at desktop and mobile"
+        ],
+        "dependencies": [
+          "ph_1"
+        ],
+        "start_after_all": [
+          "ph_1"
+        ],
+        "overlap_tail": [],
+        "notices": [],
+        "milestones": [
+          {
+            "id": "ms_2",
+            "label": "Designs approved",
+            "due": "2026-12-11",
+            "done": false
+          }
+        ],
+        "planned_start": "2026-11-23",
+        "planned_end": "2026-12-11"
+      },
+      {
+        "id": "ph_3",
+        "order": 3,
+        "code": "P3",
+        "title": "Build and launch",
+        "status": "approved",
+        "scope_items": [
+          "Build the four pages",
+          "Connect domain",
+          "Launch checklist"
+        ],
+        "deliverables": [
+          {
+            "id": "d_3_1",
+            "label": "Staging site",
+            "done": false
+          },
+          {
+            "id": "d_3_2",
+            "label": "Production launch",
+            "done": false
+          }
+        ],
+        "acceptance_criteria": [
+          "Site live on the client domain",
+          "Lighthouse accessibility check run and shared"
+        ],
+        "dependencies": [
+          "ph_2"
+        ],
+        "start_after_all": [
+          "ph_2"
+        ],
+        "overlap_tail": [],
+        "notices": [],
+        "milestones": [
+          {
+            "id": "ms_3",
+            "label": "Site launched",
+            "due": "2027-01-15",
+            "done": false
+          }
+        ],
+        "planned_start": "2026-12-14",
+        "planned_end": "2027-01-15"
+      },
+      {
+        "id": "ph_4",
+        "order": 4,
+        "code": "P4",
+        "title": "Online ordering (added by CO-1)",
+        "status": "draft",
+        "scope_items": [
+          "Ordering page",
+          "Pickup time slots"
+        ],
+        "deliverables": [
+          {
+            "id": "d_4_1",
+            "label": "Ordering flow on staging",
+            "done": false
+          },
+          {
+            "id": "d_4_2",
+            "label": "Ordering live",
+            "done": false
+          }
+        ],
+        "acceptance_criteria": [
+          "Test order placed end to end"
+        ],
+        "dependencies": [
+          "ph_3"
+        ],
+        "start_after_all": [
+          "ph_3"
+        ],
+        "overlap_tail": [],
+        "notices": [],
+        "milestones": [
+          {
+            "id": "ms_4",
+            "label": "Ordering live",
+            "due": "2027-01-29",
+            "done": false
+          }
+        ],
+        "planned_start": "2027-01-18",
+        "planned_end": "2027-01-29"
+      }
+    ],
+    "change_order_policy": {
+      "hourly_rate_cents": null,
+      "requires_written_approval": true,
+      "body_md": "Any change to scope, price or dates needs both parties to approve onchain."
+    },
+    "signed_baseline": {
+      "version_no": 1,
+      "version_id": "ver_1",
+      "accepted_by_name": "Dana Reyes (fictional)",
+      "accepted_by_title": "Owner",
+      "accepted_at": "2026-11-03T17:12:00Z",
+      "planned_end_date": "2027-01-15",
+      "total_duration_label": "About 10 weeks"
+    },
+    "change_requests": [
+      {
+        "id": "co_0",
+        "title": "Add online ordering",
+        "description": "Add an ordering page with pickup time slots as a new phase.",
+        "requested_by": "client",
+        "cost_delta_cents": 180000,
+        "affected_phase_ids": [
+          "ph_4"
+        ],
+        "status": "approved",
+        "approved_schedule_impact": {
+          "previous_planned_end_date": "2027-01-15",
+          "new_planned_end_date": "2027-01-29",
+          "timeline_delta_days": 14
+        },
+        "acceptance": {
+          "version_id": "ver_2",
+          "client_name": "Dana Reyes (fictional)",
+          "accepted_at": "2026-12-02T16:40:00Z"
+        }
+      },
+      {
+        "id": "co_1",
+        "title": "Extra photo pass for launch",
+        "description": "One more product photo session before launch. Adds cost to P3 and moves its due date 7 days.",
+        "requested_by": "staff",
+        "cost_delta_cents": 50000,
+        "affected_phase_ids": [
+          "ph_3"
+        ],
+        "status": "proposed",
+        "approved_schedule_impact": null,
+        "proposed_schedule_impact": {
+          "previous_planned_end_date": "2027-01-15",
+          "new_planned_end_date": "2027-01-22",
+          "timeline_delta_days": 7,
+          "note": "P3 due date only. P4 due date is unchanged in this change order; the designer should show that P4 may need its own change order if it depends on P3."
+        },
+        "acceptance": {
+          "version_id": null,
+          "client_name": null,
+          "accepted_at": null
+        }
+      }
+    ]
+  },
+  "escrow": {
+    "_synthetic": "FICTIONAL SAMPLE DATA. No real client, provider, amount or deliverable. Hashes and addresses are fake placeholders; explorer links will 404 until a real Arbitrum Sepolia deploy exists.",
+    "chain": {
+      "name": "Arbitrum Sepolia",
+      "chain_id": 421614,
+      "testnet": true,
+      "explorer": "https://sepolia.arbiscan.io"
+    },
+    "contract": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "note": "Placeholder. Not deployed yet at handoff time."
+    },
+    "token": {
+      "symbol": "mUSDC",
+      "name": "Zilla Test USD (mock, no value)",
+      "decimals": 6,
+      "address": "0x0000000000000000000000000000000000000000",
+      "note": "Testnet mock stablecoin from contracts/src/mocks/MockStablecoin.sol. Real Sepolia test USDC may replace it."
+    },
+    "agreement": {
+      "agreement_id": 1,
+      "status": "Active",
+      "version": 2,
+      "client": "0xa6d7b002b471e390de8001f19723c95fc0e8c60b",
+      "provider": "0x863f65b0f9cc28a13672beabbe69b07ba481cd7a",
+      "agent": "0xb34de4b0c4c7ff19136567715a642bd0c2700567",
+      "arbiter": "0x4d8b5013c00bf61e1a66da8d94d1638e3528f787",
+      "roles": {
+        "client": "Saltmarsh Coffee Roasters (fictional)",
+        "provider": "Fernwood Design Studio (fictional)",
+        "agent": "Zilla OS delivery agent",
+        "arbiter": "Demo arbiter (testnet address, labeled demo)"
+      },
+      "baseline_hash": "0xab34c487501c883e59b3713c0f369a8d0f27d25d23feda0332d888abd06ee266",
+      "scope_hash": "0x453edca4e46cf8accdad57642a5c063dceab8d7c004d70f0d70477f7e449110e",
+      "scope_uri": "ipfs://SYNTHETIC-scope-v2",
+      "accepted_at": "2026-11-03T17:12:00Z"
+    },
+    "totals": {
+      "contract_total": 11800000000,
+      "escrow_balance": 8000000000,
+      "released": 2000000000,
+      "refunded": 0,
+      "unfunded": 1800000000,
+      "units": "base units, 6 decimals (2000000000 = 2,000.00 mUSDC)"
+    },
+    "milestones": [
+      {
+        "index": 0,
+        "phase_ref": "ph_1",
+        "label": "P1 Discovery and brand kit",
+        "amount": 2000000000,
+        "funded": 0,
+        "released": 2000000000,
+        "due": "2026-11-20",
+        "status": "Released",
+        "proof": {
+          "proof_hash": "0x9dc29eaf552ea0435ea22f921e6c2394b89a77d0aa2d235b0414e297158daecf",
+          "proof_uri": "ipfs://SYNTHETIC-proof-pack-p1",
+          "submitted_at": "2026-11-19T21:05:00Z",
+          "submitted_by_role": "agent",
+          "items": [
+            "Discovery summary (PDF)",
+            "Brand kit zip"
+          ]
+        }
+      },
+      {
+        "index": 1,
+        "phase_ref": "ph_2",
+        "label": "P2 Site design",
+        "amount": 3500000000,
+        "funded": 3500000000,
+        "released": 0,
+        "due": "2026-12-11",
+        "status": "Submitted",
+        "proof": {
+          "proof_hash": "0x914c865d0e5acd4375a83a8d1a1ec4392aed05fee5bca28200e956a1355293e4",
+          "proof_uri": "ipfs://SYNTHETIC-proof-pack-p2",
+          "submitted_at": "2026-12-10T18:30:00Z",
+          "submitted_by_role": "agent",
+          "items": [
+            "Homepage design",
+            "Inner page designs (3)",
+            "Mobile layouts"
+          ],
+          "review_window_ends_at": "2026-12-24T18:30:00Z"
+        }
+      },
+      {
+        "index": 2,
+        "phase_ref": "ph_3",
+        "label": "P3 Build and launch",
+        "amount": 4500000000,
+        "funded": 4500000000,
+        "released": 0,
+        "due": "2027-01-15",
+        "status": "Funded",
+        "proof": null
+      },
+      {
+        "index": 3,
+        "phase_ref": "ph_4",
+        "label": "P4 Online ordering (CO-1)",
+        "amount": 1800000000,
+        "funded": 0,
+        "released": 0,
+        "due": "2027-01-29",
+        "status": "Pending",
+        "proof": null,
+        "added_by_change_order": 0
+      }
+    ],
+    "change_orders": [
+      {
+        "change_order_id": 0,
+        "desk_change_request_id": "co_0",
+        "proposer_role": "client",
+        "target": "NEW_MILESTONE",
+        "base_version": 1,
+        "status": "Approved",
+        "cost_delta": 1800000000,
+        "new_due_date": "2027-01-29",
+        "new_scope_hash": "0x453edca4e46cf8accdad57642a5c063dceab8d7c004d70f0d70477f7e449110e",
+        "reason_uri": "ipfs://SYNTHETIC-co-0",
+        "resulting_version": 2
+      },
+      {
+        "change_order_id": 1,
+        "desk_change_request_id": "co_1",
+        "proposer_role": "provider",
+        "target": 2,
+        "base_version": 2,
+        "status": "Proposed",
+        "cost_delta": 500000000,
+        "previous_due_date": "2027-01-15",
+        "new_due_date": "2027-01-22",
+        "new_scope_hash": "0x50ba87106cf9875a1b8187eeaf85bea58b77ab3fb2260ff5c12c7cb75fa1b9b3",
+        "reason_uri": "ipfs://SYNTHETIC-co-1"
+      }
+    ],
+    "audit_timeline": [
+      {
+        "event": "AgreementCreated",
+        "tx_hash": "0x83b09ef7cd7096c6172c526d0c86684de328e77160a5be506dc70b40341173f6",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x83b09ef7cd7096c6172c526d0c86684de328e77160a5be506dc70b40341173f6",
+        "block_time": "2026-11-02T22:10:00Z",
+        "actor_role": "provider",
+        "summary": "Agreement proposed with 3 milestones",
+        "scope_hash": "0xab34c487501c883e59b3713c0f369a8d0f27d25d23feda0332d888abd06ee266"
+      },
+      {
+        "event": "AgreementAccepted",
+        "tx_hash": "0x7519552ff8ddc9a33448449781d986ccf9fb5171aa424747aa531f9567ef6d48",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x7519552ff8ddc9a33448449781d986ccf9fb5171aa424747aa531f9567ef6d48",
+        "block_time": "2026-11-03T17:12:00Z",
+        "actor_role": "client",
+        "summary": "Client accepted the signed scope (version 1)",
+        "baseline_hash": "0xab34c487501c883e59b3713c0f369a8d0f27d25d23feda0332d888abd06ee266"
+      },
+      {
+        "event": "AgentSet",
+        "tx_hash": "0x5497435605ef1109b106a229e0e23d42afbbc62a5a8bd1c428b097e24a887897",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x5497435605ef1109b106a229e0e23d42afbbc62a5a8bd1c428b097e24a887897",
+        "block_time": "2026-11-03T17:20:00Z",
+        "actor_role": "provider",
+        "summary": "Delivery agent assigned"
+      },
+      {
+        "event": "MilestoneFunded",
+        "tx_hash": "0x9ebff080ea16540311ecd10bce37531bb9ea018b8ff2fcac88544e28d5255df0",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x9ebff080ea16540311ecd10bce37531bb9ea018b8ff2fcac88544e28d5255df0",
+        "block_time": "2026-11-04T15:00:00Z",
+        "actor_role": "client",
+        "milestone_index": 0,
+        "amount": 2000000000
+      },
+      {
+        "event": "ProofSubmitted",
+        "tx_hash": "0x2170bdfdf07bd739b11dfc816ffbb31109687dbc0707f7b6a7dcc534988a4625",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x2170bdfdf07bd739b11dfc816ffbb31109687dbc0707f7b6a7dcc534988a4625",
+        "block_time": "2026-11-19T21:05:00Z",
+        "actor_role": "agent",
+        "milestone_index": 0,
+        "proof_hash": "0x9dc29eaf552ea0435ea22f921e6c2394b89a77d0aa2d235b0414e297158daecf"
+      },
+      {
+        "event": "MilestoneReleased",
+        "tx_hash": "0x804b28087329c719ac6bdbce10785b0b5f3104812160e72f50e086b09444da20",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x804b28087329c719ac6bdbce10785b0b5f3104812160e72f50e086b09444da20",
+        "block_time": "2026-11-20T14:22:00Z",
+        "actor_role": "client",
+        "milestone_index": 0,
+        "amount": 2000000000
+      },
+      {
+        "event": "MilestoneFunded",
+        "tx_hash": "0x7961b2a13e951d6506e873eaa7d07bb7a7d35f97592e0b79777ba59f16512f48",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x7961b2a13e951d6506e873eaa7d07bb7a7d35f97592e0b79777ba59f16512f48",
+        "block_time": "2026-11-23T15:00:00Z",
+        "actor_role": "client",
+        "milestone_index": 1,
+        "amount": 3500000000
+      },
+      {
+        "event": "ChangeOrderProposed",
+        "tx_hash": "0x07590801b9a790f6f8370395b6a651a0f78486aa7195479e5f9f0f73adfcb747",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x07590801b9a790f6f8370395b6a651a0f78486aa7195479e5f9f0f73adfcb747",
+        "block_time": "2026-12-01T19:00:00Z",
+        "actor_role": "client",
+        "change_order_id": 0,
+        "cost_delta": 1800000000,
+        "new_due_date": "2027-01-29"
+      },
+      {
+        "event": "ChangeOrderApproved",
+        "tx_hash": "0xf71d58581041776c193835ebdaa69a841c94301f04e379517ea5265c5fa86e79",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0xf71d58581041776c193835ebdaa69a841c94301f04e379517ea5265c5fa86e79",
+        "block_time": "2026-12-02T16:40:00Z",
+        "actor_role": "provider",
+        "change_order_id": 0,
+        "new_version": 2,
+        "milestone_index": 3
+      },
+      {
+        "event": "ProofSubmitted",
+        "tx_hash": "0x3f59b069104220e409c55e502e2d7edd91b3d92c1a7677b7a0648a1aaa23c6f5",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0x3f59b069104220e409c55e502e2d7edd91b3d92c1a7677b7a0648a1aaa23c6f5",
+        "block_time": "2026-12-10T18:30:00Z",
+        "actor_role": "agent",
+        "milestone_index": 1,
+        "proof_hash": "0x914c865d0e5acd4375a83a8d1a1ec4392aed05fee5bca28200e956a1355293e4"
+      },
+      {
+        "event": "MilestoneFunded",
+        "tx_hash": "0xf4f7da49ab5aff9e63ef139e6992e5c5b28f4a31eaf3286d582908dbff4dfa4f",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0xf4f7da49ab5aff9e63ef139e6992e5c5b28f4a31eaf3286d582908dbff4dfa4f",
+        "block_time": "2026-12-12T15:00:00Z",
+        "actor_role": "client",
+        "milestone_index": 2,
+        "amount": 4500000000
+      },
+      {
+        "event": "ChangeOrderProposed",
+        "tx_hash": "0xac844fee5e41df5b77478f3294e590b6a66f5e10d2e7dd5cbad11dff1089ddbb",
+        "explorer_url": "https://sepolia.arbiscan.io/tx/0xac844fee5e41df5b77478f3294e590b6a66f5e10d2e7dd5cbad11dff1089ddbb",
+        "block_time": "2026-12-15T20:00:00Z",
+        "actor_role": "provider",
+        "change_order_id": 1,
+        "cost_delta": 500000000,
+        "new_due_date": "2027-01-22"
+      }
+    ],
+    "rules_from_contract": {
+      "review_period_days": 14,
+      "refund_grace_days": 7,
+      "max_milestones": 64,
+      "non_custodial": "No owner, no admin withdraw, no upgrade path"
+    }
+  }
+}

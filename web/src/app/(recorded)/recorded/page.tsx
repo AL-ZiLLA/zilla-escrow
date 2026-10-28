@@ -1,7 +1,7 @@
-import { LiveCheck } from "@/components/LiveCheck";
-import { Timeline } from "@/components/Timeline";
-import { AddressLink, Card, Eyebrow, SectionTitle } from "@/components/ui";
-import { Walkthrough } from "@/components/Walkthrough";
+import { LiveCheck } from "@/components/recorded/LiveCheck";
+import { Timeline } from "@/components/recorded/Timeline";
+import { AddressLink, Card, Eyebrow, SectionTitle } from "@/components/recorded/ui";
+import { Walkthrough } from "@/components/recorded/Walkthrough";
 import tests from "@/data/tests.json";
 import { ROLE_LABEL, run, type RoleKey } from "@/lib/run";
 import { REPO_URL } from "@/lib/site";
