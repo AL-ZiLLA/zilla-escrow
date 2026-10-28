@@ -26,3 +26,20 @@ for (const [file, size, scale] of out) {
   await sharp(svg(scale), { density: 300 }).resize(size, size).png().toFile(new URL(`../${file}`, import.meta.url).pathname);
   console.log(file, size);
 }
+
+// favicon.ico for browsers and crawlers that request it directly: the same flat logo on the
+// dark tile at 16, 32 and 48 px, stored as PNG images inside one ICO container.
+const sizes = [16, 32, 48];
+const pngs = await Promise.all(sizes.map((s) => sharp(svg(0.9), { density: 300 }).resize(s, s).png().toBuffer()));
+const header = Buffer.alloc(6); header.writeUInt16LE(0, 0); header.writeUInt16LE(1, 2); header.writeUInt16LE(sizes.length, 4);
+let offset = 6 + 16 * sizes.length;
+const entries = pngs.map((png, i) => {
+  const e = Buffer.alloc(16);
+  e.writeUInt8(sizes[i] % 256, 0); e.writeUInt8(sizes[i] % 256, 1); e.writeUInt8(0, 2); e.writeUInt8(0, 3);
+  e.writeUInt16LE(1, 4); e.writeUInt16LE(32, 6); e.writeUInt32LE(png.length, 8); e.writeUInt32LE(offset, 12);
+  offset += png.length;
+  return e;
+});
+const { writeFileSync } = await import('node:fs');
+writeFileSync(new URL('../src/app/favicon.ico', import.meta.url), Buffer.concat([header, ...entries, ...pngs]));
+console.log('src/app/favicon.ico', sizes.join('/'));

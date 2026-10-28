@@ -25,7 +25,7 @@ await step('locked routes redirect to /unlock', async () => {
     const loc = res.headers()['location'] ?? '';
     check(`GET ${route} unauthenticated -> /unlock`, [307, 308, 302].includes(res.status()) && new URL(loc, BASE).pathname === '/unlock', `${res.status()} ${loc}`);
   }
-  for (const route of ['/manifest.webmanifest', '/sw.js', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/maskable-512.png', '/apple-icon.png', '/unlock']) {
+  for (const route of ['/manifest.webmanifest', '/sw.js', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/maskable-512.png', '/apple-icon.png', '/favicon.ico', '/unlock']) {
     const res = await ctx.request.get(BASE + route, { maxRedirects: 0 });
     check(`GET ${route} reachable without the gate`, res.status() === 200, res.status());
   }
