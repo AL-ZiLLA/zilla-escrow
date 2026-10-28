@@ -13,3 +13,6 @@ Source: Codex handoff `zilla-escrow-ui` (SHA256SUMS verified 185/185).
 - Wallet and transaction controls are UI simulations. No wallet calls, no transactions.
 - All handoff design files are byte-identical to the handoff, except the layout CSS import paths.
 - Screenshots: `docs/screenshots/ui-v2/` (1280 and 390, dark and light, plus variants).
+
+## Deploy
+- Vercel project `zilla-escrow` on team `al-zillas-projects`, root directory `web/`, framework Next.js, Node 22.x. Production branch `main`; this branch deploys as a preview only.
