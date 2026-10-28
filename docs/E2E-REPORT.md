@@ -16,7 +16,7 @@ Branch `ui-v2-integration`, PR #1 (not merged). Testnet only: Arbitrum Sepolia (
 | Deployed bytecode vs local `forge build` (`cast code`) | v3 is byte-identical to the verified source at commit e446c32 (escrow and token). Later commits add natspec comments only: the executable code is identical and only the trailing metadata hash differs (rechecked after the natspec change). |
 | Arbiscan source verification (v3) | escrow and token verified (solc 0.8.24, 200 runs, cancun) |
 | `pnpm typecheck`, `pnpm lint`, `pnpm test` | green |
-| Demo password gate + PWA (`web/e2e/gate-pwa.mjs`) on the deployed branch alias | **27/27** (`docs/screenshots/pwa/gate-pwa-results.json`) |
+| Demo password gate + PWA (`web/e2e/gate-pwa.mjs`) on the deployed branch alias | **28/28** (`docs/screenshots/pwa/gate-pwa-results.json`; includes `/favicon.ico` reachable without the gate, added in 695107d) |
 | Vercel preview | branch alias https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app (demo password gate; Vercel Authentication off for this project) |
 
 ## Deployment (current)

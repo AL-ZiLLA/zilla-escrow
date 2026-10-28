@@ -1,6 +1,6 @@
 {
   "base": "https://zilla-escrow-git-ui-v2-integration-al-zillas-projects.vercel.app",
-  "total": 27,
+  "total": 28,
   "failed": 0,
   "results": [
     {
@@ -50,6 +50,11 @@
     },
     {
       "name": "GET /apple-icon.png reachable without the gate",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "GET /favicon.ico reachable without the gate",
       "ok": true,
       "detail": "200"
     },
